@@ -18,7 +18,7 @@ public interface DemandeDetails {
     Categorie getUniteDuree();
     Profession getProfession();
     String getpb();
-  //  img getPiecejointe();
+  String getLien();
     Date getdateCreation();
     boolean getTraite();
 }

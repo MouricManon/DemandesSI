@@ -19,6 +19,6 @@ public class DemandeForm {
     private Categorie categorie;
     private Profession profession;
     private String pb;
-   // private img piecejointe;
+  private String lien;
     private boolean traitement_realise;
 }

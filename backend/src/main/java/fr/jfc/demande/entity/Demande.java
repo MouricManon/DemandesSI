@@ -29,7 +29,7 @@ public class Demande {
     private Profession profession;
     @NonNull
     private String pb;
-
+private String lien;
     private boolean traite;
 
     @ManyToOne

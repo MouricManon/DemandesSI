@@ -1,7 +1,6 @@
 <script setup>
 import { onMounted, reactive, ref } from "vue";
-import traitement from "@/Traitement.js";
-import TabRecapMedic11 from "@/components/TabRecapMedic11.vue";
+
 import { format } from "path";
 const listeunitFreq = reactive([]);
 const listeunitDuree = reactive([]);
@@ -87,11 +86,11 @@ function getDuree(event) {
 }
 
 function listDemandeEvent(
-  nom, prenom, adressemail, objet, caractere, profession, pb, piecejointe
+  nom, prenom, adressemail, objet, caractere, profession, pb, lien
 ) {
   listDemande.push(
     new demande(
-     nom, prenom, adressemail, objet, caractere, profession, pb, piecejointe
+     nom, prenom, adressemail, objet, caractere, profession, pb, lien
     )
   );
   document.getElementById("form").reset();
@@ -108,7 +107,7 @@ function putDemande() {
       item._caractere,
       item._profession,
       item._pb,
-      item._piecejointe,
+      item._lien,
       item._date
     );
   });
@@ -116,7 +115,7 @@ function putDemande() {
 }
 
 function postDemande(
-   nom, prenom, adressemail, objet, caractere, profession, pb, piecejointe,
+   nom, prenom, adressemail, objet, caractere, profession, pb, lien,
   date
 ) {
   let url = "/api/saveDemande";
@@ -126,7 +125,7 @@ function postDemande(
     method: "POST",
     headers: myHeaders,
     body: JSON.stringify({
-         nom :nom , prenom: prenom, adressemail:adressemail, objet:objet, caractere:caractere, profession:profession, pb:pb,piecejointe: piecejointe,
+         nom :nom , prenom: prenom, adressemail:adressemail, objet:objet, caractere:caractere, profession:profession, pb:pb,lien: lien,
       datecreation: date,
     
     }),
@@ -145,7 +144,7 @@ function postDemande(
     <div class="formulaireTraitement">
       <form @submit.prevent="
         listDemandeEvent(
-         nom, prenom, adressemail, objet, caractere, profession, pb, piecejointe
+         nom, prenom, adressemail, objet, caractere, profession, pb, lien
         )
       " id="form" class="row g-3">
       <div  class="col-md-6">
@@ -178,7 +177,7 @@ function postDemande(
         </div>
         <div  class="col-md-6">
           <h4 id="pj">Ajoutez une image si besoin</h4>
-<input id="pjDemande" v-model="piecejointe"/>
+<input id="pjDemande" v-model="lien"/>
         </div>
           <input id="valider" type="submit" value="Ajouter" />
       </form>

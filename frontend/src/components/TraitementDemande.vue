@@ -1,4 +1,4 @@
- <template><!--Case : Tableau -->
+<!--Case : Tableau <template>
     <div class="tableau">
       <h2>Liste des médicaments en cours d'ajout</h2>
 
@@ -39,7 +39,7 @@
         </tbody>
       </table>
 
-      <!-- Bouton -->
+    
       <input type="button" id="enregistrer" value="Valider la liste et l'enregistrer" @click="putDemande()" />
     </div>
-  </div></template>
+  </div></template>*/-->   <!-- Bouton -->
