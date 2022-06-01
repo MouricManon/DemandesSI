@@ -137,40 +137,75 @@ function postDemande(
          nom, prenom, adressemail, objet, categorie, profession, pb, lien
         )
       " id="form" class="row g-3">
-      <div  class="col-md-6">
-        <h4 id="identite">Indiquez votre nom et prénom:</h4>
-        <input id="nomDemande" v-model="nom" placeholder="Nom"/>
-        <input id="prenomDemande" v-model="prenom"  placeholder="Prénom"/>
+        <label for="nom,prenom">Indiquez votre nom et prénom :</label>
+        <h4 id="identite"></h4>
+        <input class="input" type="text" id="nomDemande" v-model="nom" placeholder="Nom"/>
+        <input class="input" type="text" id="prenomDemande" v-model="prenom"  placeholder="Prénom"/>
         </div>        
         <div  class="col-md-6">
-          <h4 id="objet">Indiquez la nature de votre demande</h4>
-<input id="objetDemande" v-model="objet"  placeholder="Objet"/>
+          <label for="objet">Indiquez la nature de votre demande</label>
+<input class="input" id="objetDemande" type="text" v-model="objet"  placeholder="Objet"/>
         </div>
          <div  class="col-md-6">
-           <h4 id="priorite">Indiquez le niveau d'urgence</h4>
+              <label for="categorie">Indiquez le niveau d'urgence :</label>
            <select class="select"  v-model="categorie"> 
           <option v-for="(categorie,index) of categories">
             {{ categorie}}
           </option>
         </select></div>
         <div  class="col-md-6">
+          <label for="profession">Sélectionnez votre profession :</label>
            <select class="select" id="selectrech" v-model="profession" placeholder="Choissisez votre profession dans la liste"> 
           <option v-for="(profession,index) of professions">
             {{ profession}}
           </option>
         </select></div>
         <div  class="col-md-6">
-          <h4 id="objet">Décrivez votre problème</h4>
-<input id="pbDemande" v-model="pb"/>
+          <label for="pb">Décrivez votre problème :</label>
+<input class="input" type="text" id="pbDemande"  placeholder="Nous sommes à votre écoute" v-model="pb"/>
         </div>
         <div  class="col-md-6">
-          <h4 id="pj">Ajoutez une image si besoin</h4>
-<input id="pjDemande" v-model="lien"/>
+          <label for="image">Ajoutez une image si besoin :</label>
+  <input id="parcourir" type="submit" value="parcourir" />
         </div>
-          <input id="valider" type="submit" value="Ajouter" @click="putDemande()"/>
+          <input id="valider" type="submit" value="Envoyer" @click="putDemande()"/>
       </form>
       </div>
       
 
    
 </template>
+<style>
+#form{
+  display:table;
+ margin: 0 auto;
+  width : 850px;
+  text-align: center;
+} 
+
+#valider{
+  cursor : pointer;
+    color: black;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  background: white;
+  width : 70px;
+  position : relative;
+  left : -211px;
+}
+
+h4{
+  color : black;
+}
+
+.input{
+  border-radius: 5px;
+  background: white;
+}
+
+#pbDemande{
+  width : 700px;
+  height : 400px;
+  text-align: justify;
+}
+</style>
