@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Resoudre from "../views/Resoudre.vue";
 import Demande from "../views/Demande.vue";
-
+import Resoudre from "../views/Resoudre.vue";
+import Accueil from "../views/Accueil.vue";
 const routes = [{
         path: "/signaler",
         name: "Signaler",
@@ -15,8 +15,8 @@ const routes = [{
     },
     {
         path: "/",
-        name: "Choix",
-        component: Choix,
+        name: "Accueil",
+        component: Accueil,
     },
 
   
