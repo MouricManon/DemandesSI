@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, reactive, ref } from "vue";
-
+import Demande from "@/Demande.js";
 import { format } from "path";
 
 
@@ -82,7 +82,7 @@ function listDemandeEvent(
   nom, prenom, adressemail, objet, categorie, profession, pb, lien
 ) {
   listDemande.push(
-    new demande(
+ new Demande(
      nom, prenom, adressemail, objet, categorie, profession, pb, lien
     )
   );
@@ -128,7 +128,9 @@ function postDemande(
     .then((response) => {
       return response.json();
     })
-    .then((dataJSON) => { });
+    .then((dataJSON) => { 
+      document.getElementById("texte").innerHTML =
+        "Votre demande concernant : "+objet+" a bien été ajouté à la base de données";});
 }
 </script>
 
@@ -146,7 +148,7 @@ function postDemande(
         </div>        
         <div  class="col-md-6">
           <label for="objet">Indiquez la nature de votre demande :</label>
-          <input class="input" id="objetDemande" type="text" v-model="objet"  placeholder="Objet"/>
+          <input class="input" id="objetDemande"   cols="60" maxlength="60" type="text" v-model="objet"  placeholder="Objet"/>
         </div>
          <div  class="col-md-6">
             <label for="categorie">Indiquez le niveau d'urgence :</label>
@@ -170,10 +172,12 @@ function postDemande(
         </div>
         <div  class="col-md-6">
           <label for="image">Ajoutez une image si besoin :</label>
+           <input v-model="lien" cols="60" maxlength="60" type="text" placeholder="lien"/>
         <input id="parcourir" type="submit" value="parcourir" />
         </div>
         <div class="col-md-6">
-          <input id="valider" type="submit" value="Envoyer" @click="putDemande()"/></div>
+          <input id="valider"  type="submit" value="Envoyer" @click="putDemande()"/></div>
+          <div class="col-md-6" id="texte"> </div>
       </form>
     </div>
 </template>
