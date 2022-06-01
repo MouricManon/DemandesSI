@@ -10,7 +10,7 @@ const routes = [{
   
     {
         path: "/traitement",
-        name: "Traitement",
+        name: "Traitement des demandes",
         component: Resoudre,
     },
     {

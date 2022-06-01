@@ -6,6 +6,7 @@
 
 
     <nav class="container navbar-expand-lg d-flex justify-content-md-between py-3 mb-4 border-bottom">
+       <router-link to="/" class="navbar-brand"><span class="max">Accueil</span></router-link>
       <router-link to="/signaler" class="navbar-brand"><span class="max">Demande</span></router-link>
       <router-link to="/traitement" class="navbar-brand"><span class="max">Traitement</span></router-link>
       <p class="mt-3">Bienvenue</p>

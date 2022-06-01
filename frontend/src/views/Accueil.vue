@@ -1,10 +1,20 @@
 <template>
   <div class="home espace">
-    <h1 class="mx-auto">Bienvenue sur l'application WEB de FiveCure !</h1>
-
-    <p>Ce site WEB vous permettra de gérer les ordonnances mieux que quiconque. <br> Une prise en main facilitée
-      expliquée en quelques images </p>
-   
+    <br>
+<br>
+    <h1 class="mx-auto">Bienvenue sur le logiciel de gestion des demandes vers le système informatique</h1>
+<br>
+<br>
+    <p>Pour réaliser une demande ou un signalement,<br> veuillez cliquez en haut au milieu sur "demande" et remplir le formulaire </p>
+   <br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br>
+<br>
+<br>
   </div>
 </template>
 
@@ -16,16 +26,16 @@ import Footer from "@/components/2Footer.vue"
 </script>
 <style scoped>
 h1 {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  color: white;
+  font-family:  Arial,Avenir, Helvetica, sans-serif;
+  color: black;
   width: 842px;
-  background-color: #B48B75;
+  background-color: #77c3e0;
   border-radius: 10px 100px/120px;
 }
 
 p {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  font-size: 18px;
+  font-family: Arial, Avenir, Helvetica, sans-serif;
+  font-size: 30px;
   color: black;
 }
 

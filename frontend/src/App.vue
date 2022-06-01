@@ -8,16 +8,15 @@ import Footer from "@/components/2Footer.vue";
 
 
 <template>
-  <div>
+  <div id="header">
     <Header>
-</Header>
-<h4>You did it ca run guy</h4>
-  </div><Footer></Footer>
+</Header></div>
+  <div id="footer"><Footer></Footer></div>
 </template>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family:Arial, Avenir, Helvetica,  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
