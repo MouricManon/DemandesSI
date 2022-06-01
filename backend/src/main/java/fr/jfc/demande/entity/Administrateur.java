@@ -27,15 +27,13 @@ public class Administrateur {
 
     @NonNull
     private String nom; 
-    @NonNull 
-    private String adressemail;
+   
     @NonNull
     private String prenom;
-
+ @NonNull 
+    private String adressemail;
     @NonNull
     private String mdp;
-
-  //  private image piecejointe;
 
     @OneToMany(mappedBy="administrateur")
     private Set<Demande> lesDemandes;

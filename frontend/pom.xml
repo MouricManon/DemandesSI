@@ -6,7 +6,7 @@
 
 	<parent>
 		<groupId>fr.jfc</groupId>
-		<artifactId>ptut</artifactId>
+		<artifactId>demande</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
