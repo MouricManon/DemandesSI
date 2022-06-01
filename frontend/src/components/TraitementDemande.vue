@@ -42,4 +42,30 @@
     
       <input type="button" id="enregistrer" value="Valider la liste et l'enregistrer" @click="putDemande()" />
     </div>
-  </div></template>*/-->   <!-- Bouton -->
+  </div></template>
+  function getFrequence(event) {
+  let url = "/api/allUniteFreq";
+  let fetchOptions = { method: "Get" };
+  fetch(url, fetchOptions)
+    .then((response) => {
+      return response.json();
+    })
+    .then((dataJSON) => {
+      dataJSON.forEach((v) => listeunitFreq.push(v));
+    })
+    .catch((error) => { });
+}
+
+function getDuree(event) {
+  let url = "/api/allUniteDuree";
+  let fetchOptions = { method: "Get" };
+  fetch(url, fetchOptions)
+    .then((response) => {
+      return response.json();
+    })
+    .then((dataJSON) => {
+      dataJSON.forEach((v) => listeunitDuree.push(v));
+    })
+    .catch((error) => { });
+}*/-->  
+   <!-- Bouton -->

@@ -3,14 +3,18 @@ import { onMounted, reactive, ref } from "vue";
 
 import { format } from "path";
 
+
 const listDemande= reactive([]);
 const listeSearch = reactive([]);
-const patients = reactive([]);
 const demandes = reactive([]);
+const categories = reactive([]);
+const professions = reactive([]);
 
 onMounted(() => {
   lesDemandes("");
   getDemandes();
+  getProfession();
+  getCategories();
 });
 
 
@@ -44,15 +48,39 @@ function lesDemandes(demande) {
 }
 
 
+ function getCategories(event) {
+  let url = "/api/allCategories";
+  let fetchOptions = { method: "Get" };
+  fetch(url, fetchOptions)
+    .then((response) => {
+      return response.json();
+    })
+    .then((dataJSON) => {
+      dataJSON.forEach((v) => listcategories.push(v));
+    })
+    .catch((error) => { });
+}
 
+function getProfession(event) {
+  let url = "/api/allProfessions";
+  let fetchOptions = { method: "Get" };
+  fetch(url, fetchOptions)
+    .then((response) => {
+      return response.json();
+    })
+    .then((dataJSON) => {
+      dataJSON.forEach((v) => listprofessions.push(v));
+    })
+    .catch((error) => { });
+}
 
 
 function listDemandeEvent(
-  nom, prenom, adressemail, objet, caractere, profession, pb, lien
+  nom, prenom, adressemail, objet, categorie, profession, pb, lien
 ) {
   listDemande.push(
     new demande(
-     nom, prenom, adressemail, objet, caractere, profession, pb, lien
+     nom, prenom, adressemail, objet, categorie, profession, pb, lien
     )
   );
   document.getElementById("form").reset();
@@ -66,7 +94,7 @@ function putDemande() {
       item._prenom,
       item._adressemail,
       item._objet,
-      item._caractere,
+      item._categorie,
       item._profession,
       item._pb,
       item._lien,
@@ -77,7 +105,7 @@ function putDemande() {
 }
 
 function postDemande(
-   nom, prenom, adressemail, objet, caractere, profession, pb, lien,
+   nom, prenom, adressemail, objet, categorie, profession, pb, lien,
   date
 ) {
   let url = "/api/saveDemande";
@@ -87,7 +115,7 @@ function postDemande(
     method: "POST",
     headers: myHeaders,
     body: JSON.stringify({
-         nom :nom , prenom: prenom, adressemail:adressemail, objet:objet, caractere:caractere, profession:profession, pb:pb,lien: lien,
+         nom :nom , prenom: prenom, adressemail:adressemail, objet:objet, categorie:categorie, profession:profession, pb:pb,lien: lien,
       datecreation: date,
     
     }),
@@ -106,7 +134,7 @@ function postDemande(
     <div class="formulaireTraitement">
       <form @submit.prevent="
         listDemandeEvent(
-         nom, prenom, adressemail, objet, caractere, profession, pb, lien
+         nom, prenom, adressemail, objet, categorie, profession, pb, lien
         )
       " id="form" class="row g-3">
       <div  class="col-md-6">
@@ -120,15 +148,13 @@ function postDemande(
         </div>
          <div  class="col-md-6">
            <h4 id="priorite">Indiquez le niveau d'urgence</h4>
-           <select class="select"  v-model="caractere"> 
-          <option v-for="(caractere,index) of caracteres">
-            {{ caractere}}
+           <select class="select"  v-model="categorie"> 
+          <option v-for="(categorie,index) of categories">
+            {{ categorie}}
           </option>
         </select></div>
         <div  class="col-md-6">
-           <select class="select" id="selectrech" v-model="profession">  <option disabled selected>
-            Choissisez votre profession dans la liste
-          </option>
+           <select class="select" id="selectrech" v-model="profession" placeholder="Choissisez votre profession dans la liste"> 
           <option v-for="(profession,index) of professions">
             {{ profession}}
           </option>

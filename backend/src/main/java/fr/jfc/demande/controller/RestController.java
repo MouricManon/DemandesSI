@@ -22,6 +22,8 @@ import fr.jfc.demande.dto.DemandeForm;
 
 import fr.jfc.demande.entity.Administrateur;
 import fr.jfc.demande.entity.Demande;
+import fr.jfc.demande.enume.Categorie;
+import fr.jfc.demande.enume.Profession;
 
 
 @Controller // This means that this class is a Controller
@@ -96,6 +98,24 @@ public class RestController {
 	  log.info("Renvoie la liste des administrateur");
 	 return adminDao.findAll();
 	  }
-	 
+
+	  @GetMapping(path = "allCategories")
+	public @ResponseBody List<Categorie> allCategorie() {
+		log.info("Renvoie la liste des catégories");
+		List<Categorie> lesCategories= new ArrayList<>();
+		for (Categorie cat : Categorie.values()) {
+			lesCategories.add(cat);
+		}
+		return lesCategories;
+	}
+	@GetMapping(path = "allProfessions")
+	public @ResponseBody List<Profession> allProfessions() {
+		log.info("Renvoie la liste des professions");
+		List<Profession> lesProfessions= new ArrayList<>();
+		for (Profession prof : Profession.values()) {
+			lesProfessions.add(prof);
+		}
+		return lesProfessions;
+	}
 
 }
