@@ -9,12 +9,15 @@ const listeSearch = reactive([]);
 const demandes = reactive([]);
 const categories = reactive([]);
 const professions = reactive([]);
+let item = reactive();
 
 onMounted(() => {
   lesDemandes("");
   getDemandes();
   getProfession();
   getCategories();
+  postDemande();
+  putDemande();
 });
 
 
@@ -56,20 +59,20 @@ function lesDemandes(demande) {
       return response.json();
     })
     .then((dataJSON) => {
-      dataJSON.forEach((v) => listcategories.push(v));
+      dataJSON.forEach((v) => categories.push(v));
     })
     .catch((error) => { });
 }
 
 function getProfession(event) {
   let url = "/api/allProfessions";
-  let fetchOptions = { method: "Get" };
+  let fetchOptions = { method: "GET" };
   fetch(url, fetchOptions)
     .then((response) => {
       return response.json();
     })
     .then((dataJSON) => {
-      dataJSON.forEach((v) => listprofessions.push(v));
+      dataJSON.forEach((v) => professions.push(v));
     })
     .catch((error) => { });
 }
@@ -88,7 +91,7 @@ function listDemandeEvent(
 
 
 function putDemande() {
-  listTraitement.forEach((item, index) => {
+  listDemande.forEach((item, index) => {
     postDemande(
       item._nom,
       item._prenom,
@@ -102,6 +105,7 @@ function putDemande() {
     );
   });
   listDemande.splice(0, listDemande.length);
+  console.log(item);
 }
 
 function postDemande(
@@ -129,57 +133,55 @@ function postDemande(
 </script>
 
 <template>
-  
-    
     <div class="formulaireTraitement">
       <form @submit.prevent="
         listDemandeEvent(
          nom, prenom, adressemail, objet, categorie, profession, pb, lien
         )
       " id="form" class="row g-3">
+      <div class="col-md-6">
         <label for="nom,prenom">Indiquez votre nom et prénom :</label>
-        <h4 id="identite"></h4>
         <input class="input" type="text" id="nomDemande" v-model="nom" placeholder="Nom"/>
         <input class="input" type="text" id="prenomDemande" v-model="prenom"  placeholder="Prénom"/>
         </div>        
         <div  class="col-md-6">
-          <label for="objet">Indiquez la nature de votre demande</label>
-<input class="input" id="objetDemande" type="text" v-model="objet"  placeholder="Objet"/>
+          <label for="objet">Indiquez la nature de votre demande :</label>
+          <input class="input" id="objetDemande" type="text" v-model="objet"  placeholder="Objet"/>
         </div>
          <div  class="col-md-6">
-              <label for="categorie">Indiquez le niveau d'urgence :</label>
-           <select class="select"  v-model="categorie"> 
+            <label for="categorie">Indiquez le niveau d'urgence :</label>
+           <select class="select"  v-model="categorie" >
+           <option value="" selected disabled>--Niveau d'urgence--</option> 
           <option v-for="(categorie,index) of categories">
             {{ categorie}}
           </option>
         </select></div>
         <div  class="col-md-6">
           <label for="profession">Sélectionnez votre profession :</label>
-           <select class="select" id="selectrech" v-model="profession" placeholder="Choissisez votre profession dans la liste"> 
+           <select class="select" id="selectrech" v-model="profession" > 
+            <option value="placehold" selected disabled>--Votre profession--</option> 
           <option v-for="(profession,index) of professions">
             {{ profession}}
           </option>
         </select></div>
         <div  class="col-md-6">
           <label for="pb">Décrivez votre problème :</label>
-<input class="input" type="text" id="pbDemande"  placeholder="Nous sommes à votre écoute" v-model="pb"/>
+        <textarea  rows="10" cols="100" maxlength="1000" class="input"  id="pbDemande"  placeholder="Nous sommes à votre écoute" v-model="pb"/>
         </div>
         <div  class="col-md-6">
           <label for="image">Ajoutez une image si besoin :</label>
-  <input id="parcourir" type="submit" value="parcourir" />
+        <input id="parcourir" type="submit" value="parcourir" />
         </div>
-          <input id="valider" type="submit" value="Envoyer" @click="putDemande()"/>
+        <div class="col-md-6">
+          <input id="valider" type="submit" value="Envoyer" @click="putDemande()"/></div>
       </form>
-      </div>
-      
-
-   
+    </div>
 </template>
 <style>
 #form{
   display:table;
  margin: 0 auto;
-  width : 850px;
+  width : 740px;
   text-align: center;
 } 
 
@@ -207,5 +209,9 @@ h4{
   width : 700px;
   height : 400px;
   text-align: justify;
+}
+
+.select{
+  color:black;
 }
 </style>

@@ -95,7 +95,7 @@ public class RestController {
 	
 	  @GetMapping(path = "allAdministrateur")
 	  public @ResponseBody List<Administrateur> allAdmin() {
-	  log.info("Renvoie la liste des administrateur");
+	  log.info("Renvoie la liste des administrateurs");
 	 return adminDao.findAll();
 	  }
 

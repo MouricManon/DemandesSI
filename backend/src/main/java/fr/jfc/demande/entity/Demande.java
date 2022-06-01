@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+
 import fr.jfc.demande.enume.Categorie;
 import fr.jfc.demande.enume.Profession;
 import lombok.Getter;
