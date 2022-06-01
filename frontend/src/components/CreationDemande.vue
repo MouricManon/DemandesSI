@@ -2,49 +2,35 @@
 import { onMounted, reactive, ref } from "vue";
 
 import { format } from "path";
-const listeunitFreq = reactive([]);
-const listeunitDuree = reactive([]);
+
 const listDemande= reactive([]);
 const listeSearch = reactive([]);
 const patients = reactive([]);
-const maladies = reactive([]);
+const demandes = reactive([]);
 
 onMounted(() => {
-  getFrequence();
-  getDuree();
-  lesMedicaments("");
-  getPatients();
-  getMaladies();
+  lesDemandes("");
+  getDemandes();
 });
 
-function getPatients(event) {
-  let url = "/api/ListePatient/";
-  let fetchOptions = { method: "Get" };
-  fetch(url, fetchOptions)
-    .then((response) => response.json())
-    .then((json) => {
-      json.forEach((v) => patients.push(v));
-    })
-    .catch((error) => alert(error));
-}
 
-function getMaladies(event) {
-  let url = "/api/maladies";
+function getDemandes(event) {
+  let url = "/api/demandes";
   let fetchOptions = { method: "Get" };
   fetch(url, fetchOptions)
     .then((response) => response.json())
     .then((json) => {
-      let results = json._embedded.maladies;
-      results.forEach((v) => maladies.push(v));
+      let results = json._embedded.demandes;
+      results.forEach((v) => demandes.push(v));
     })
     .catch((error) => alert(error));
 }
 
 
 
-function lesMedicaments(medic) {
+function lesDemandes(demande) {
   let fetchOptions = { method: "GET" };
-  fetch("/api/medicamentsByName?mot=" + medic)
+  fetch("/api/medicamentsByName?mot=" + demande)
     .then((response) => {
       return response.json();
     })
@@ -59,31 +45,7 @@ function lesMedicaments(medic) {
 
 
 
-function getFrequence(event) {
-  let url = "/api/allUniteFreq";
-  let fetchOptions = { method: "Get" };
-  fetch(url, fetchOptions)
-    .then((response) => {
-      return response.json();
-    })
-    .then((dataJSON) => {
-      dataJSON.forEach((v) => listeunitFreq.push(v));
-    })
-    .catch((error) => { });
-}
 
-function getDuree(event) {
-  let url = "/api/allUniteDuree";
-  let fetchOptions = { method: "Get" };
-  fetch(url, fetchOptions)
-    .then((response) => {
-      return response.json();
-    })
-    .then((dataJSON) => {
-      dataJSON.forEach((v) => listeunitDuree.push(v));
-    })
-    .catch((error) => { });
-}
 
 function listDemandeEvent(
   nom, prenom, adressemail, objet, caractere, profession, pb, lien
@@ -179,7 +141,7 @@ function postDemande(
           <h4 id="pj">Ajoutez une image si besoin</h4>
 <input id="pjDemande" v-model="lien"/>
         </div>
-          <input id="valider" type="submit" value="Ajouter" />
+          <input id="valider" type="submit" value="Ajouter" @click="putDemande()"/>
       </form>
       </div>
       

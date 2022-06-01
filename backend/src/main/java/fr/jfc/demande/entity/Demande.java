@@ -1,4 +1,5 @@
 package fr.jfc.demande.entity;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -30,6 +31,7 @@ public class Demande {
     @NonNull
     private String pb;
 private String lien;
+@Column(columnDefinition = "boolean default false")
     private boolean traite;
 
     @ManyToOne
