@@ -19,9 +19,9 @@
 
                 <!-- div sur la partie droite "revenir en haut" -->
                 <div id="haut">
-                    <img id="fleche" src="@/assets/fleche.png" alt="Fleche sur laquelle cliquer pour revenir au haut de page"
-                        height="50" width="50" />
-                    <a id="revenir" title="ancre vers le haut de la page">Revenir en haut de page</a>
+                  <a href="#top">   <img id="fleche" src="@/assets/fleche.png" alt="Fleche sur laquelle cliquer pour revenir au haut de page"
+                        height="50" width="50" /></a>
+                   <a id="revenir" title="ancre vers le haut de la page">Revenir en haut de page</a> 
                 </div>
 
 

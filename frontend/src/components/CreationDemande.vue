@@ -106,7 +106,6 @@ function putDemande() {
     );
   });
   listDemande.splice(0, listDemande.length);
-  console.log(item);
 }
 
 function postDemande(
@@ -182,7 +181,7 @@ function postDemande(
         
         </div>
         <div class="col-md-6">
-          <input id="valider"  type="submit" value="Envoyer" @click="putDemande()"/></div>
+          <input id="valider"  type="submit" value="Envoyer" @click="listDemandeEvent()"/></div>
           <div class="col-md-6" id="texte"> </div>
       </form>
     </div>

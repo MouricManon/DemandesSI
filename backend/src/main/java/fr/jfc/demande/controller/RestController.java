@@ -69,11 +69,12 @@ public class RestController {
 			d.setDate(formData.getDatecreation());
 			d.setLien(formData.getLien());
 			d.setPb(formData.getPb());
-			log.info("Enregistré: {}", formData.getNomdemandeur());
+			log.info("Enregistré: {}", formData.getNomdemandeur(), demandeDao);	
 			demandeDao.save(d);
+			
 		return d;
 		
-		
+
 	}
 
 

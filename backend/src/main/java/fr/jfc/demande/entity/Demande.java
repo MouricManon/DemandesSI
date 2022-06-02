@@ -14,11 +14,10 @@ import javax.persistence.ManyToOne;
 import fr.jfc.demande.enume.Categorie;
 import fr.jfc.demande.enume.Profession;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
-@Getter @Setter @NoArgsConstructor @ToString
+@Getter @Setter @ToString
 @Entity 
 public class Demande {
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) 
