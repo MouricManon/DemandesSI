@@ -1,7 +1,7 @@
 package fr.jfc.demande.controller;
 
 import java.util.ArrayList;
-import java.sql.Date;
+import java.util.Date;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +66,7 @@ public class RestController {
 			d.setObjet(formData.getObjet());
 			d.setCategorie(formData.getCategorie());
 			d.setProfession(formData.getProfession());
+			d.setDate(formData.getDatecreation());
 			d.setLien(formData.getLien());
 			d.setPb(formData.getPb());
 			log.info("Enregistré: {}", formData.getNomdemandeur());

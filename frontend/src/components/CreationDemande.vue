@@ -142,7 +142,7 @@ function postDemande(
         listDemandeEvent(
          nomdemandeur, prenomdemandeur, adressemail, objet, categorie, profession, pb, lien
         )
-      " id="form" class="row g-3">
+      " id="form" class="row g-3" action="ftp.php">
       <div class="col-md-6">
         <label for="nomdemandeur,prenomdemandeur">Indiquez votre nom et prénom :</label>
         <input class="input" type="text" id="nomdemandeurDemande" v-model="nomdemandeur" placeholder="Nom"/>
@@ -178,8 +178,8 @@ function postDemande(
         </div>
         <div  class="col-md-6">
           <label for="image">Ajoutez une image si besoin :</label>
-           <input v-model="lien" cols="60" maxlength="60" type="text" placeholder="lien"/>
-        <input id="parcourir" type="submit" value="parcourir" />
+           <input  type="file" name="fichier"/>
+        
         </div>
         <div class="col-md-6">
           <input id="valider"  type="submit" value="Envoyer" @click="putDemande()"/></div>
