@@ -114,7 +114,7 @@ function postDemande(
   date
 ) {
 
-  let url = "/api/saveDemande"; ;
+  let url = "/api/saveDemande"; 
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   const fetchOptions = {
@@ -132,7 +132,7 @@ function postDemande(
     })
     .then((dataJSON) => { 
       document.getElementById("texte").innerHTML =
-        "Votre demande concernant : "+objet+" a bien été ajouté à la base de données";});
+        "Votre demande concernant : <strong> "+ objet +"</strong> a bien été envoyée";});
 }
 </script>
 
@@ -147,10 +147,14 @@ function postDemande(
         <label for="nomdemandeur,prenomdemandeur">Indiquez votre nom et prénom :</label>
         <input class="input" type="text" id="nomdemandeurDemande" v-model="nomdemandeur" placeholder="Nom"/>
         <input class="input" type="text" id="prenomdemandeurDemande" v-model="prenomdemandeur"  placeholder="Prénom"/>
-        </div>        
+        </div> 
+         <div  class="col-md-6">
+          <label for="adressemail">Indiquez votre adresse mail :</label>
+          <input class="input" id="adressemailDemande"   cols="70" maxlength="70" type="text" v-model="adressemail"  placeholder="jean.dupont@exemple.com"/>
+        </div>       
         <div  class="col-md-6">
           <label for="objet">Indiquez la nature de votre demande :</label>
-          <input class="input" id="objetDemande"   cols="60" maxlength="60" type="text" v-model="objet"  placeholder="Objet"/>
+          <input class="input" id="objetDemande"   cols="70" maxlength="70" type="text" v-model="objet"  placeholder="Objet"/>
         </div>
          <div  class="col-md-6">
             <label for="categorie">Indiquez le niveau d'urgence :</label>

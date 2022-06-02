@@ -1,6 +1,7 @@
 package fr.jfc.demande.controller;
 
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,17 +57,20 @@ public class RestController {
      img piecejointe;*/
 
 	@PostMapping(path = "saveDemande")
-	public @ResponseBody Demande enregistreUneDemande(@RequestBody DemandeForm formData) {
+	public @ResponseBody Demande saveDemande(@RequestBody DemandeForm formData) {
 		log.info("Reçu: {}", formData);
-		List<Demande> allDemandes = demandeDao.findAll();
-		Demande demande=null;
-		for (Demande d : allDemandes) {
-			if (d.getNomdemandeur().equals(formData.getNomdemandeur())) {
-				demande = d;
-			}	
+		Demande d=new Demande();
+			d.setNomdemandeur(formData.getNomdemandeur());
+			d.setPrenomdemandeur(formData.getPrenomdemandeur());
+			d.setAdressemail(formData.getAdressemail());
+			d.setObjet(formData.getObjet());
+			d.setCategorie(formData.getCategorie());
+			d.setProfession(formData.getProfession());
+			d.setLien(formData.getLien());
+			d.setPb(formData.getPb());
 			log.info("Enregistré: {}", formData.getNomdemandeur());
-		}
-		return demande;
+			demandeDao.save(d);
+		return d;
 		
 		
 	}

@@ -1,4 +1,6 @@
 package fr.jfc.demande.entity;
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -32,6 +34,7 @@ public class Demande {
     private Profession profession;
     @NonNull
     private String pb;
+    private Date date;
 private String lien;
 @Column(columnDefinition = "boolean default false")
     private boolean traite;

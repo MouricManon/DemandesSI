@@ -4,12 +4,15 @@ import java.util.Date;
 import fr.jfc.demande.enume.Categorie;
 import fr.jfc.demande.enume.Profession;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Un "DTO" (Data Transfer Object) pour représenter 
  * un soigner.
  */
-@Data // Lombok pour auto-générer getter / setter / toString...
+@Data
+@Getter @Setter // Lombok pour auto-générer getter / setter / toString...
 public class DemandeForm {
     private Date datecreation;
     private String nomdemandeur;
