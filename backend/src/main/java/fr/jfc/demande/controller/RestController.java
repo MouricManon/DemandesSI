@@ -73,10 +73,7 @@ public class RestController {
 			demandeDao.save(d);
 			
 		return d;
-		
-
 	}
-
 
 	@GetMapping(path = "DemandeByObjet")
 	public @ResponseBody List<Demande> DemandeByObjet(String mot) {

@@ -16,8 +16,6 @@ onMounted(() => {
   getDemandes();
   getProfession();
   getCategories();
-  postDemande();
-  putDemande();
 });
 
 
@@ -181,16 +179,21 @@ function postDemande(
         
         </div>
         <div class="col-md-6">
-          <input id="valider"  type="submit" value="Envoyer" @click="listDemandeEvent()"/></div>
+          <input id="valider"  type="submit" value="Envoyer"/></div>
           <div class="col-md-6" id="texte"> </div>
       </form>
     </div>
 </template>
 <style>
+
+.formulaireTraitement{
+position : relative;
+left: 290px;
+}
 #form{
   display:table;
  margin: 0 auto;
-  width : 740px;
+  width : 1157px;
   text-align: center;
 } 
 
@@ -201,8 +204,6 @@ function postDemande(
   border-radius: 20px;
   background: white;
   width : 70px;
-  position : relative;
-  left : -211px;
 }
 
 h4{
@@ -212,6 +213,7 @@ h4{
 .input{
   border-radius: 5px;
   background: white;
+  width : 359px;
 }
 
 #pbDemande{

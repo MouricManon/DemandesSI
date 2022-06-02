@@ -9,7 +9,7 @@ define('CONFIG_TIMEOUT',  2);      // Délai de connexion, en secondes
 if(! empty($_FILES['fichier']) && $_FILES['fichier']['error'] == UPLOAD_ERR_OK && is_uploaded_file($_FILES['fichier']['tmp_name']))
 {
   $file = $_FILES['fichier']['tmp_name'];   // Le fichier téléversé
-  $dest = '/' . $_FILES['fichier']['name']; // Sa destination
+  $dest = '/envoiDemandes' . $_FILES['fichier']['name']; // Sa destination
 
   $conn_id = ftp_connect(CONFIG_SERVER);   // Création de la connexion au serveur FTP
 
