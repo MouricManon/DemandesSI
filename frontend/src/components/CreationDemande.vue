@@ -177,7 +177,7 @@ function postDemande(
         <textarea  rows="10" cols="100" maxlength="1000" class="input"  id="pbDemande"  placeholder="Nous sommes à votre écoute" v-model="pb"/>
         </div>
         <div  class="col-md-6">
-          <label for="image">Ajoutez une image si besoin :</label>
+          <label for="fichier">Ajoutez une image si besoin :</label>
            <input  type="file" name="fichier"/>
         
         </div>
