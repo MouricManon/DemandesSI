@@ -9,7 +9,7 @@ const listeSearch = reactive([]);
 const demandes = reactive([]);
 const categories = reactive([]);
 const professions = reactive([]);
-let item = reactive();
+let item = new Demande;
 
 onMounted(() => {
   lesDemandes("");
@@ -79,22 +79,23 @@ function getProfession(event) {
 
 
 function listDemandeEvent(
-  nom, prenom, adressemail, objet, categorie, profession, pb, lien
+  nomdemandeur, prenomdemandeur, adressemail, objet, categorie, profession, pb, lien
 ) {
   listDemande.push(
  new Demande(
-     nom, prenom, adressemail, objet, categorie, profession, pb, lien
+     nomdemandeur, prenomdemandeur, adressemail, objet, categorie, profession, pb, lien
     )
   );
+  putDemande();
   document.getElementById("form").reset();
 }
 
 
 function putDemande() {
-  listDemande.forEach((item, index) => {
+  listDemande.forEach((item) => {
     postDemande(
-      item._nom,
-      item._prenom,
+      item._nomdemandeur,
+      item._prenomdemandeur,
       item._adressemail,
       item._objet,
       item._categorie,
@@ -109,17 +110,18 @@ function putDemande() {
 }
 
 function postDemande(
-   nom, prenom, adressemail, objet, categorie, profession, pb, lien,
+   nomdemandeur, prenomdemandeur, adressemail, objet, categorie, profession, pb, lien,
   date
 ) {
-  let url = "/api/saveDemande";
+
+  let url = "/api/saveDemande"; ;
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   const fetchOptions = {
     method: "POST",
     headers: myHeaders,
     body: JSON.stringify({
-         nom :nom , prenom: prenom, adressemail:adressemail, objet:objet, categorie:categorie, profession:profession, pb:pb,lien: lien,
+         nomdemandeur :nomdemandeur , prenomdemandeur: prenomdemandeur, adressemail:adressemail, objet:objet, categorie:categorie, profession:profession, pb:pb,lien: lien,
       datecreation: date,
     
     }),
@@ -138,13 +140,13 @@ function postDemande(
     <div class="formulaireTraitement">
       <form @submit.prevent="
         listDemandeEvent(
-         nom, prenom, adressemail, objet, categorie, profession, pb, lien
+         nomdemandeur, prenomdemandeur, adressemail, objet, categorie, profession, pb, lien
         )
       " id="form" class="row g-3">
       <div class="col-md-6">
-        <label for="nom,prenom">Indiquez votre nom et prénom :</label>
-        <input class="input" type="text" id="nomDemande" v-model="nom" placeholder="Nom"/>
-        <input class="input" type="text" id="prenomDemande" v-model="prenom"  placeholder="Prénom"/>
+        <label for="nomdemandeur,prenomdemandeur">Indiquez votre nom et prénom :</label>
+        <input class="input" type="text" id="nomdemandeurDemande" v-model="nomdemandeur" placeholder="Nom"/>
+        <input class="input" type="text" id="prenomdemandeurDemande" v-model="prenomdemandeur"  placeholder="Prénom"/>
         </div>        
         <div  class="col-md-6">
           <label for="objet">Indiquez la nature de votre demande :</label>

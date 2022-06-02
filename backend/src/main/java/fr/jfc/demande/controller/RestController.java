@@ -46,8 +46,8 @@ public class RestController {
 	}*/
 
 	/*private Date datecreation;
-    private String nom;
-     String prenom;
+    private String nomdemandeur;
+     String prenomdemandeur;
      String adressemail;
      String objet;
      Categorie categorie;
@@ -56,16 +56,17 @@ public class RestController {
      img piecejointe;*/
 
 	@PostMapping(path = "saveDemande")
-	public @ResponseBody void enregistreUneDemande(@RequestBody DemandeForm formData) {
+	public @ResponseBody Demande enregistreUneDemande(@RequestBody DemandeForm formData) {
 		log.info("Reçu: {}", formData);
 		List<Demande> allDemandes = demandeDao.findAll();
 		Demande demande=null;
 		for (Demande d : allDemandes) {
-			if (d.getNom_demandeur().equals(formData.getNom())) {
+			if (d.getNomdemandeur().equals(formData.getNomdemandeur())) {
 				demande = d;
 			}	
-			log.info("Enregistré: {}", formData.getNom());
+			log.info("Enregistré: {}", formData.getNomdemandeur());
 		}
+		return demande;
 		
 		
 	}

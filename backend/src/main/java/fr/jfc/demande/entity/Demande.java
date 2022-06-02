@@ -22,8 +22,8 @@ public class Demande {
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer id;
     @NonNull
-    private String nom_demandeur;
-    private String prenom_demandeur;
+    private String nomdemandeur;
+    private String prenomdemandeur;
     private String adressemail;
     private String objet;
     @Enumerated(EnumType.ORDINAL)

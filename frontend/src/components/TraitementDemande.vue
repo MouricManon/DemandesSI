@@ -14,7 +14,7 @@
         <tbody>
           <tr v-for="(ceTraitement, index) in listTraitement" :key="index">
             <td id="1">
-              Nom du médicament : <br />
+              nomdemandeur du médicament : <br />
               Maladie traité :
             </td>
             <td id="2">

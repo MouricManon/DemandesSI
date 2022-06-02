@@ -12,8 +12,8 @@ import lombok.Data;
 @Data // Lombok pour auto-générer getter / setter / toString...
 public class DemandeForm {
     private Date datecreation;
-    private String nom;
-    private String prenom;
+    private String nomdemandeur;
+    private String prenomdemandeur;
     private String adressemail;
     private String objet;
     private Categorie categorie;

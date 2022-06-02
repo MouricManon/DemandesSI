@@ -11,8 +11,8 @@ import fr.jfc.demande.enume.Profession;
  */
 public interface DemandeDetails {
     int getId();
-    String getNom();
-    String getPrenom();
+    String getNomdemandeur();
+    String getPrenomdemandeur();
     String getAdressemail();
     String getObjet();
     Categorie getUniteDuree();
