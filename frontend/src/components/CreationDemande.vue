@@ -139,8 +139,9 @@ function postDemande(
         listDemandeEvent(
          nomdemandeur, prenomdemandeur, adressemail, objet, categorie, profession, pb, lien
         )
-      " id="form" class="row g-3" action="ftp.php">
-      <div class="col-md-6">
+      " id="form" class="row g-3" action="ftp.php" name="upload" >
+       <div class="col-md-6">
+      <legend>À propos de vous</legend>
         <label for="nomdemandeur,prenomdemandeur">Indiquez votre nom et prénom :</label>
         <input class="input" type="text" id="nomdemandeurDemande" v-model="nomdemandeur" placeholder="Nom"/>
         <input class="input" type="text" id="prenomdemandeurDemande" v-model="prenomdemandeur"  placeholder="Prénom"/>
@@ -148,8 +149,18 @@ function postDemande(
          <div  class="col-md-6">
           <label for="adressemail">Indiquez votre adresse mail :</label>
           <input class="input" id="adressemailDemande"   cols="70" maxlength="70" type="text" v-model="adressemail"  placeholder="jean.dupont@exemple.com"/>
-        </div>       
+        </div>      
         <div  class="col-md-6">
+          <label for="profession">Sélectionnez votre profession :</label>
+           <select class="select" id="selectrech" v-model="profession" > 
+            <option value="placehold" selected disabled>--Votre profession--</option> 
+          <option v-for="(profession,index) of professions">
+            {{ profession}}
+          </option>
+        </select></div>
+        
+        <div  class="col-md-6">
+          <legend>À propos du message</legend>
           <label for="objet">Indiquez la nature de votre demande :</label>
           <input class="input" id="objetDemande"   cols="70" maxlength="70" type="text" v-model="objet"  placeholder="Objet"/>
         </div>
@@ -159,14 +170,6 @@ function postDemande(
            <option value="" selected disabled>--Niveau d'urgence--</option> 
           <option v-for="(categorie,index) of categories">
             {{ categorie}}
-          </option>
-        </select></div>
-        <div  class="col-md-6">
-          <label for="profession">Sélectionnez votre profession :</label>
-           <select class="select" id="selectrech" v-model="profession" > 
-            <option value="placehold" selected disabled>--Votre profession--</option> 
-          <option v-for="(profession,index) of professions">
-            {{ profession}}
           </option>
         </select></div>
         <div  class="col-md-6">
@@ -225,4 +228,10 @@ h4{
 .select{
   color:black;
 }
+legend {
+ color:#53ac17;
+ font-weight:bold
+ }
+
+ 
 </style>

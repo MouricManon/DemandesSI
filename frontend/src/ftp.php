@@ -1,7 +1,7 @@
 <?php
 //il faut réussir à récupérer la téléversation du coup pas le mettre en route mtn
 /*
-define('CONFIG_SERVER',   'xxx');  // Adresse du serveur FTP
+define('CONFIG_SERVER',   '192.1.2.81');  // Adresse du serveur FTP
 define('CONFIG_USERNAME', 'mmouric');  // Nom d'utilisateur
 define('CONFIG_PASSWORD', 'Szu97xmm!');  // Mot de passe
 define('CONFIG_TIMEOUT',  2);      // Délai de connexion, en secondes

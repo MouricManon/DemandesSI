@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "nanomatch": "^1.2.13"
+  }
+}
