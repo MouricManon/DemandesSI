@@ -1,12 +1,12 @@
 <script setup>
-
+import TableauDemande from "@/components/TableauDemande.vue";
 
 </script>
 <template>
   
   <div class="espace">
 
-<TraitementDemande/>
+<TableauDemande/>
 
 </div>
 
