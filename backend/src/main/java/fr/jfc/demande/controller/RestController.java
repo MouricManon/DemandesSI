@@ -60,7 +60,6 @@ public class RestController {
 	public @ResponseBody Demande saveDemande(@RequestBody DemandeForm formData) {
 		log.info("Reçu: {}", formData);
 		Demande d=new Demande();
-		if(formData.getNomdemandeur()!=null && formData.getAdressemail()!=null && formData.getPb()!=null &&formData.getObjet()!=null){
 d.setNomdemandeur(formData.getNomdemandeur());
 			d.setPrenomdemandeur(formData.getPrenomdemandeur());
 			d.setAdressemail(formData.getAdressemail());
@@ -72,11 +71,7 @@ d.setNomdemandeur(formData.getNomdemandeur());
 			d.setPb(formData.getPb());
 			log.info("Enregistré: {}", formData.getNomdemandeur(), demandeDao);	
 			demandeDao.save(d);
-		}
-			else{
-				Exception e = new Exception("Il y a des valeurs manquantes");
-			}
-			
+		
 		return d;
 	}
 

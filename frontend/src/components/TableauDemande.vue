@@ -2,12 +2,30 @@
 import { reactive, onUpdated } from "vue";
 import Demande from "@/Demande.js";
 import CreationDemande from "@/components/CreationDemande.vue";
+onMounted(() => {
+  getDemandes();
+});
 
 const data = reactive({
     id: "",
     demandes: [],
   
 });
+
+function getDemandes(event) {
+  let url = "/api/demandes";
+  let fetchOptions = { method: "Get" };
+  fetch(url, fetchOptions)
+    .then((response) => response.json())
+    .then((json) => {
+      let results = json._embedded.demandes;
+      results.forEach((v) => demandes.push(v));
+    })
+    .catch((error) => alert(error));
+}
+
+
+
 </script>
 <template>
   <div>
@@ -20,11 +38,12 @@ const data = reactive({
                                <th class="objet">Objet</th>
                                    <th class="profession">Profession</th>
                               <th class="demande">Voir</th>
+                              <th class="traite">Traité</th>
       
                             </tr>
                         </thead>
-                        <tbody class="txt-violet">
-                            <tr v-if="data.demandes.length != 0" v-for="demande in data.demandes">
+                        <tbody  class="txt-violet">
+                            <tr v-if="demandes.length != 0" v-for="demande in demandes">
                                 <td class="date">{{ demande.getDatecreation() }}</td>
                                 <td class="nom">{{ demande.getNomDemandeur() }}</td>
                                 <td class="prenom">{{ demande.getPrenomDemandeur() }}</td>
@@ -33,7 +52,9 @@ const data = reactive({
                                 <td colspan="10">
                                   Cliquez pour avoir des informations sur la demande
                                     <a href="/Voir" class="text-decoration-none txt-bleufonce"> Voir</a>
-                                </td>                       
+                                </td>       
+                                <td>
+                                <input type="button" value="réalisé"/>   </td>           
                             </tr>
                             
                             <tr v-else>
@@ -43,7 +64,7 @@ const data = reactive({
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
+                           </table>
                 </div>
             </div>
 </template>
