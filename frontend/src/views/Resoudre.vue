@@ -5,9 +5,8 @@ import TableauDemande from "@/components/TableauDemande.vue";
 <template>
   
   <div class="espace">
-
-<TableauDemande/>
-
+<TableauDemande>
+</TableauDemande>
 </div>
 
 </template>

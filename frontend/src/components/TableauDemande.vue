@@ -12,77 +12,40 @@ const data = reactive({
 <template>
   <div>
  <div class="container bg-gradient-bleufonce rounded-3">
-
-        <div class="container bg-marronclair rounded-3">
-            <div class="container" v-if="data.id != ''">
-                <div id="alerteMessage"></div>
-                <div class="row">
-                    <div class="col">
-                            <label >Date de la demande</label>
-                    </div>
-                    <div class="col">
-                            <label >Nom </label>
-                    </div>
-                    <div class="col">
-                            <label  >Objet</label>
-                    </div>
-                       <div class="col">
-                            <label  >Profession</label>
-                    </div>
-                </div>   <table>
+   <table>
                         <thead><tr>
-                                <th class="info">Moyen de prise</th>
-                                <th class="contreIndication">Contre Indication</th>
-                                <th class="posologie">Posologie</th>
-                                <th class="maladie">
-                                    Maladie
-                                    <i class="pointer arrow down"></i>
-                                </th>
+                                <th class="date">Date de la demande</th>
+                                <th class="nom">Nom</th>
+                                <th class="prenom">Prenom</th>
+                               <th class="objet">Objet</th>
+                                   <th class="profession">Profession</th>
+                              <th class="demande">Voir</th>
       
                             </tr>
                         </thead>
                         <tbody class="txt-violet">
                             <tr v-if="data.demandes.length != 0" v-for="demande in data.demandes">
-                                <td class="avancement">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-bleufonce" role="progressbar"
-                                            :style="`width: ${soigner.avancement}%`"
-                                            :aria-valuenow="`${soigner.avancement}`" aria-valuemin="0"
-                                            aria-valuemax="100">
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="date">{{ soigner.datePriseAffichage }}</td>
-                                <td class="debut d-none">{{ soigner.dateCreationAffichage }}</td>
-                                <td class="fin">{{ soigner.dateFinAffichage }}</td>
-                                <td>{{ soigner.nomMedicament }}</td>
-                                <td class="info">{{ soigner.infoPrises }}</td>
-                                <td class="contreIndication">{{ soigner.contreIndications }}</td>
-                                <td class="posologie">{{ soigner.doseParPrise }} {{ soigner.dose }} {{
-                                    soigner.valFreq
-                                }}
-                                    fois /
-                                    {{
-                                        soigner.uniteFreq
-                                    }} pendant {{ soigner.valDuree }} {{ soigner.uniteDuree }}</td>
-                                <td class="maladie">{{ soigner.nomMaladie }}</td>
-                                <td>
-                                    <ConfirmationSupprimer @supprConfirmed="deleteFetch" :id="soigner.id" />
-                                </td>
+                                <td class="date">{{ demande.getDatecreation() }}</td>
+                                <td class="nom">{{ demande.getNomDemandeur() }}</td>
+                                <td class="prenom">{{ demande.getPrenomDemandeur() }}</td>
+                                <td>{{ demande.getObjet() }}</td>
+                                <td class="info">{{ demande.getPb() }}</td> 
+                                <td colspan="10">
+                                  Cliquez pour avoir des informations sur la demande
+                                    <a href="/Voir" class="text-decoration-none txt-bleufonce"> Voir</a>
+                                </td>                       
                             </tr>
+                            
                             <tr v-else>
                                 <td colspan="10">
-                                    Vous n'avez aucun médicament dans votre liste. Vous pouvez en ajouter dans la page
-                                    <a href="/ajoutTraitement" class="text-decoration-none txt-bleufonce">Ajout
-                                        Traitement</a>
+                                    Vous n'avez aucune demande dans votre liste. Vous pouvez en ajouter dans la page
+                                    <a href="/Signaler" class="text-decoration-none txt-bleufonce"> Création demande</a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>
-    </div>
 </template>
 <!--Case : Tableau <template>
     <div class="tableau">
