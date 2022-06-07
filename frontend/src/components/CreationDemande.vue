@@ -6,14 +6,12 @@ import { format } from "path";
 
 const listDemande= reactive([]);
 const listeSearch = reactive([]);
-const demandes = reactive([]);
 const categories = reactive([]);
 const professions = reactive([]);
 let item = new Demande;
 
 onMounted(() => {
   lesDemandes("");
-  getDemandes();
   getProfession();
   getCategories();
 });

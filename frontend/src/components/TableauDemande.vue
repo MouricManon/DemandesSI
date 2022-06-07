@@ -19,10 +19,10 @@ function getDemandes(event) {
     .then((response) => response.json())
     .then((json) => {
       let results = json._embedded.demandes;
-      results.forEach((v) => demandes.push(v));
+      results.forEach((v) => data.demandes.push(v));
     })
     .catch((error) => alert(error));
-    console.log(demandes);
+    console.log(data.demandes);
 }
 
 
@@ -43,18 +43,17 @@ function getDemandes(event) {
                             </tr>
                         </thead>
                         <tbody  class="txt-violet">
-                            <tr v-if="demandes.length != 0" v-for="demande in demandes">
-                                <td class="date">{{ demande.getDatecreation() }}</td>
-                                <td class="nom">{{ demande.getNomDemandeur() }}</td>
-                                <td class="prenom">{{ demande.getPrenomDemandeur() }}</td>
-                                <td>{{ demande.getObjet() }}</td>
-                                <td class="info">{{ demande.getPb() }}</td> 
-                                <td colspan="10">
-                                  Cliquez pour avoir des informations sur la demande
+                            <tr v-if="data.demandes.length != 0" v-for="demande in data.demandes">
+                                <td class="date">{{ demande._date }}</td>
+                                <td class="nom">{{ demande._nomdemandeur }}</td>
+                                <td class="prenom">{{ demande._prenomdemandeur }}</td>
+                                <td>{{ demande._objet }}</td>
+                                <td class="info">{{ demande._pb }}</td> 
+                                <td class="voir">
                                     <a href="/Voir" class="text-decoration-none txt-bleufonce"> Voir</a>
                                 </td>       
                                 <td>
-                                <input type="button" value="réalisé"/>   </td>           
+                                <input id="bouton" type="button" value="réalisé"/>   </td>           
                             </tr>
                             
                             <tr v-else>
@@ -67,6 +66,16 @@ function getDemandes(event) {
                            </table>
                 </div>
 </template>
+<style>
+#bouton{
+  cursor : pointer;
+    color: black;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  background: white;
+  width : 70px;
+}
+</style>
 <!--Case : Tableau <template>
     <div class="tableau">
       <h2>Liste des médicaments en cours d'ajout</h2>
