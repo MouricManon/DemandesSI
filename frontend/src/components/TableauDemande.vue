@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, onUpdated } from "vue";
+import { onMounted, reactive, onUpdated } from "vue";
 import Demande from "@/Demande.js";
 import CreationDemande from "@/components/CreationDemande.vue";
 onMounted(() => {
@@ -22,13 +22,13 @@ function getDemandes(event) {
       results.forEach((v) => demandes.push(v));
     })
     .catch((error) => alert(error));
+    console.log(demandes);
 }
 
 
 
 </script>
 <template>
-  <div>
  <div class="container bg-gradient-bleufonce rounded-3">
    <table>
                         <thead><tr>
@@ -66,7 +66,6 @@ function getDemandes(event) {
                         </tbody>
                            </table>
                 </div>
-            </div>
 </template>
 <!--Case : Tableau <template>
     <div class="tableau">

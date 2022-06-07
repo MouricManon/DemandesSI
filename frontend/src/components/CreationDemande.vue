@@ -19,18 +19,6 @@ onMounted(() => {
 });
 
 
-function getDemandes(event) {
-  let url = "/api/demandes";
-  let fetchOptions = { method: "Get" };
-  fetch(url, fetchOptions)
-    .then((response) => response.json())
-    .then((json) => {
-      let results = json._embedded.demandes;
-      results.forEach((v) => demandes.push(v));
-    })
-    .catch((error) => alert(error));
-}
-
 
 
 function lesDemandes(demande) {
@@ -229,7 +217,7 @@ h4{
   color:black;
 }
 legend {
- color:#53ac17;
+ color:#777777;
  font-weight:bold
  }
 
