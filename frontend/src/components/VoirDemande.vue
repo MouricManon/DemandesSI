@@ -20,6 +20,9 @@ function laDemandeid(id) {
     })
     .catch((error) => { }); console.log(response);
 }
+
+
+
 </script>
 <template>
 <h4>bonjour</h4>

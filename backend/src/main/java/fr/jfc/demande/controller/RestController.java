@@ -1,7 +1,6 @@
 package fr.jfc.demande.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ import fr.jfc.demande.entity.Administrateur;
 import fr.jfc.demande.entity.Demande;
 import fr.jfc.demande.enume.Categorie;
 import fr.jfc.demande.enume.Profession;
-
+import java.time.LocalDate;
 
 @Controller // This means that this class is a Controller
 @RequestMapping(path = "/api") // This means URL's start with /rest (after Application path)

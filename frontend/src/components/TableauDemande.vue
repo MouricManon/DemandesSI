@@ -24,10 +24,12 @@ function getDemandes(event) {
     console.log(data.demandes);
 }
 
+function traitementFait(){
 
+}
 </script>
 <template>
- <div class="container bg-gradient-bleufonce rounded-3">
+ <div class="container">
    <p>Vous avez {{data.demandes.length}} demande(s) à traiter.</p>
    <table>
                         <thead><tr>
@@ -52,7 +54,7 @@ function getDemandes(event) {
                                     <a href="/Voir" class="text-decoration-none txt-bleufonce" @click="$emit('laDemandeid', id)"> Voir</a>
                                 </td>       
                                 <td>
-                                <input id="bouton" type="button" value="réalisé"/>   </td>           
+                                <input id="bouton" type="button" value="réalisé" @click="$emit('traitementFait')"/>   </td>           
                             </tr>
                             
                             <tr v-else>
