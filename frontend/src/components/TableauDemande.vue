@@ -5,7 +5,6 @@ import CreationDemande from "@/components/CreationDemande.vue";
 onMounted(() => {
   getDemandes();
 });
-
 const data = reactive({
     id: "",
     demandes: [],
@@ -26,13 +25,13 @@ function getDemandes(event) {
 }
 
 
-
 </script>
 <template>
  <div class="container bg-gradient-bleufonce rounded-3">
+   <p>Vous avez {{data.demandes.length}} demande(s) à traiter.</p>
    <table>
                         <thead><tr>
-                                <th class="date">Date de la demande</th>
+                                <th class="date">Date</th>
                                 <th class="nom">Nom</th>
                                 <th class="prenom">Prenom</th>
                                <th class="objet">Objet</th>
@@ -44,13 +43,13 @@ function getDemandes(event) {
                         </thead>
                         <tbody  class="txt-violet">
                             <tr v-if="data.demandes.length != 0" v-for="demande in data.demandes">
-                                <td class="date">{{ demande._date }}</td>
-                                <td class="nom">{{ demande._nomdemandeur }}</td>
-                                <td class="prenom">{{ demande._prenomdemandeur }}</td>
-                                <td>{{ demande._objet }}</td>
-                                <td class="info">{{ demande._pb }}</td> 
+                                <td class="date">{{ demande.dateCreation }}</td>
+                                <td class="nom">{{ demande.nomdemandeur }}</td>
+                                <td class="prenom">{{ demande.prenomdemandeur }}</td>
+                                <td>{{ demande.objet }}</td>
+                                <td class="info">{{ demande.profession }}</td> 
                                 <td class="voir">
-                                    <a href="/Voir" class="text-decoration-none txt-bleufonce"> Voir</a>
+                                    <a href="/Voir" class="text-decoration-none txt-bleufonce" @click="$emit('laDemandeid', id)"> Voir</a>
                                 </td>       
                                 <td>
                                 <input id="bouton" type="button" value="réalisé"/>   </td>           

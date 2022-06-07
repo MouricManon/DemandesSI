@@ -96,6 +96,19 @@ d.setNomdemandeur(formData.getNomdemandeur());
 		return demandeDao.findAll();
 	}
 
+	@GetMapping(path = "DemandeById")
+	public @ResponseBody Demande DemandeById(int id) {
+		List<Demande> allDemande = this.demandeDao.findAll();
+Demande laDemande = new Demande();
+		for (Demande d : allDemande) {
+			if(d.getId() == id){
+			laDemande =d;
+			}
+		}
+		log.info(laDemande.toString());
+
+		return laDemande;
+	}
 	
 	  @GetMapping(path = "allAdministrateur")
 	  public @ResponseBody List<Administrateur> allAdmin() {
