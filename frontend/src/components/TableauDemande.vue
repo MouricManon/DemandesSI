@@ -43,7 +43,7 @@ function getDemandes(event) {
                         </thead>
                         <tbody  class="txt-violet">
                             <tr v-if="data.demandes.length != 0" v-for="demande in data.demandes">
-                                <td class="date">{{ demande.dateCreation }}</td>
+                                <td class="date">{{ demande.date }}</td>
                                 <td class="nom">{{ demande.nomdemandeur }}</td>
                                 <td class="prenom">{{ demande.prenomdemandeur }}</td>
                                 <td>{{ demande.objet }}</td>

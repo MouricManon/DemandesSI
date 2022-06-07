@@ -10,8 +10,7 @@ export default
         this._pb = pb;
         this._lien = lien;
         this._traite = false;
-        this._date = new Date();
-        
+    //this._date= LocalDate();
     }
 
 }

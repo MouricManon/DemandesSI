@@ -1,5 +1,6 @@
 package fr.jfc.demande.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 import fr.jfc.demande.enume.Categorie;
 import fr.jfc.demande.enume.Profession;
@@ -14,7 +15,7 @@ import lombok.Setter;
 @Data
 @Getter @Setter // Lombok pour auto-générer getter / setter / toString...
 public class DemandeForm {
-    private Date datecreation;
+    private LocalDate datecreation;
     private String nomdemandeur;
     private String prenomdemandeur;
     private String adressemail;

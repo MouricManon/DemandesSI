@@ -1,4 +1,5 @@
 package fr.jfc.demande.entity;
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -33,7 +34,7 @@ public class Demande {
     private Profession profession;
     @NonNull
     private String pb;
-    private Date date;
+    private LocalDate date;
 private String lien;
 @Column(columnDefinition = "boolean default false")
     private boolean traite;
