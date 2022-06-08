@@ -2,14 +2,15 @@
 import { onMounted, reactive, onUpdated } from "vue";
 import Demande from "@/Demande.js";
 import CreationDemande from "@/components/CreationDemande.vue";
+import ConfirmationTraitement from './ConfirmationTraitement.vue';
 onMounted(() => {
   getDemandes();
-  affichageDate();
+ // affichageDate();
 });
 const data = reactive({
     id: "",
     demandes: [],
-
+demandesSuppr:[],
 });
 
 function getDemandes() {
@@ -24,19 +25,42 @@ function getDemandes() {
     .catch((error) => alert(error));
 }
 
-function affichageDate(){
- for(let d in data.demandes){
-let datesansmodif = d.getDate();
-let mois = datesansmodif.getMonth();
-let jour = datesansmodif.getDay();
-let annee = datesansmodif.getYear();
-let datemodif = jour+"/"+mois+"/"+annee;
-d.setDate(datemodif);
-console.log(d.getDate()); 
- }
+/*function affichageDate(){
+ data.demandes.forEach((d) =>
+ datesansmodif = d.getDate(),
+ mois = datesansmodif.getMonth(),
+ jour = datesansmodif.getDay(),
+ annee = datesansmodif.getYear(),
+ datemodif = jour+"/"+mois+"/"+annee,
+d.setDate(datemodif),
+console.log(datemodif), 
+ )
+}*/
+function deleteFetch(id) {
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    const fetchOptions = {
+        method: "DELETE",
+        headers: myHeaders,
+    };
+    fetch("/api/demandes/" + id, fetchOptions)
+        .then(() => {
+            fetchDemandes();
+            response.setTraite(true);
+        })
+        .catch((error) => alert(error));
 }
-
+function fetchDemandes() {
+    fetch("/api/demandes/" + data.id)
+        .then((response) => response.json())
+        .then((json) => {
+            data.demandes = json;
+        })
+        .catch((error) => alert(error));
+}
 </script>
+
+
 <template>
  <div class="container">
    <p>Vous avez {{data.demandes.length}} demande(s) à traiter.</p>
@@ -65,8 +89,8 @@ console.log(d.getDate());
                                     <a href="/Voir" class="text-decoration-none txt-bleufonce" id="voir" @click="$emit('laDemandeid', id)"> Voir</a>
                                 </td>       
                                 <td>
-                                <input id="bouton" type="button" value="réalisé"/>   </td>           
-                            </tr>
+                                <input id="bouton" type="button" value="réalisé"/>   </td>   
+                                 <ConfirmationTraitement @TraitementConfirmed="deleteFetch" :id="demande.id" /></tr>
                             
                             <tr v-else>
                                 <td colspan="10">
