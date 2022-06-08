@@ -11,6 +11,7 @@ const data = reactive({
     id: "",
     demandes: [],
 demandesSuppr:[],
+Demande d,
 });
 
 function getDemandes() {
@@ -46,7 +47,7 @@ function deleteFetch(id) {
     fetch("/api/demandes/" + id, fetchOptions)
         .then(() => {
             fetchDemandes();
-            response.setTraite(true);
+           affichageTraitement();
         })
         .catch((error) => alert(error));
 }
@@ -57,6 +58,13 @@ function fetchDemandes() {
             data.demandes = json;
         })
         .catch((error) => alert(error));
+}
+
+function affichageTraitement(){
+  for(d in data.demandes){
+d.setTraite(true);
+console.log(d.getTraite());
+  }
 }
 </script>
 
