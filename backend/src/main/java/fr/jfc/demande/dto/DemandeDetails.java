@@ -1,6 +1,7 @@
 package fr.jfc.demande.dto;
 
-import java.time.LocalDate;
+
+import java.util.Date;
 
 import fr.jfc.demande.enume.Categorie;
 import fr.jfc.demande.enume.Profession;
@@ -20,6 +21,6 @@ public interface DemandeDetails {
     Profession getProfession();
     String getpb();
   String getLien();
-    LocalDate getdateCreation();
+    Date getdateCreation();
     boolean getTraite();
 }

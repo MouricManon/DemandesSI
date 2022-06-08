@@ -4,14 +4,15 @@ import Demande from "@/Demande.js";
 import CreationDemande from "@/components/CreationDemande.vue";
 onMounted(() => {
   getDemandes();
+  affichageDate();
 });
 const data = reactive({
     id: "",
     demandes: [],
-  
+
 });
 
-function getDemandes(event) {
+function getDemandes() {
   let url = "/api/demandes";
   let fetchOptions = { method: "Get" };
   fetch(url, fetchOptions)
@@ -21,19 +22,28 @@ function getDemandes(event) {
       results.forEach((v) => data.demandes.push(v));
     })
     .catch((error) => alert(error));
-    console.log(data.demandes);
 }
 
-function traitementFait(){
-
+function affichageDate(){
+ for(let d in data.demandes){
+let datesansmodif = d.getDate();
+let mois = datesansmodif.getMonth();
+let jour = datesansmodif.getDay();
+let annee = datesansmodif.getYear();
+let datemodif = jour+"/"+mois+"/"+annee;
+d.setDate(datemodif);
+console.log(d.getDate()); 
+ }
 }
+
 </script>
 <template>
  <div class="container">
    <p>Vous avez {{data.demandes.length}} demande(s) à traiter.</p>
-   <table>
+   <table class="table">
                         <thead><tr>
                                 <th class="date">Date</th>
+                                 <th class="urgence">Urgence</th>
                                 <th class="nom">Nom</th>
                                 <th class="prenom">Prenom</th>
                                <th class="objet">Objet</th>
@@ -46,15 +56,16 @@ function traitementFait(){
                         <tbody  class="txt-violet">
                             <tr v-if="data.demandes.length != 0" v-for="demande in data.demandes">
                                 <td class="date">{{ demande.date }}</td>
+                                <td class="urgence">{{ demande.categorie }}</td>
                                 <td class="nom">{{ demande.nomdemandeur }}</td>
                                 <td class="prenom">{{ demande.prenomdemandeur }}</td>
                                 <td>{{ demande.objet }}</td>
                                 <td class="info">{{ demande.profession }}</td> 
                                 <td class="voir">
-                                    <a href="/Voir" class="text-decoration-none txt-bleufonce" @click="$emit('laDemandeid', id)"> Voir</a>
+                                    <a href="/Voir" class="text-decoration-none txt-bleufonce" id="voir" @click="$emit('laDemandeid', id)"> Voir</a>
                                 </td>       
                                 <td>
-                                <input id="bouton" type="button" value="réalisé" @click="$emit('traitementFait')"/>   </td>           
+                                <input id="bouton" type="button" value="réalisé"/>   </td>           
                             </tr>
                             
                             <tr v-else>
@@ -75,6 +86,9 @@ function traitementFait(){
   border-radius: 5px;
   background: white;
   width : 70px;
+}
+#voir{
+  color :rgb(46, 129, 197);
 }
 </style>
 <!--Case : Tableau <template>

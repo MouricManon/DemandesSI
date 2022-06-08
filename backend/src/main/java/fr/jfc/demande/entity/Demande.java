@@ -34,7 +34,7 @@ public class Demande {
     private Profession profession;
     @NonNull
     private String pb;
-    private LocalDate date;
+    private Date date;
 private String lien;
 @Column(columnDefinition = "boolean default false")
     private boolean traite;
