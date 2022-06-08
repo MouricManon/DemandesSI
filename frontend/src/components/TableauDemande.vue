@@ -89,8 +89,7 @@ function fetchDemandes() {
                                     <a href="/Voir" class="text-decoration-none txt-bleufonce" id="voir" @click="$emit('laDemandeid', id)"> Voir</a>
                                 </td>       
                                 <td>
-                                <input id="bouton" type="button" value="réalisé"/>   </td>   
-                                 <ConfirmationTraitement @TraitementConfirmed="deleteFetch" :id="demande.id" /></tr>
+                                 <ConfirmationTraitement @TraitementConfirmed="deleteFetch" :id="demande.id" /> </td>   </tr>
                             
                             <tr v-else>
                                 <td colspan="10">
