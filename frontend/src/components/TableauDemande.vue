@@ -21,6 +21,7 @@ function getDemandes() {
     .then((json) => {
       let results = json._embedded.demandes;
       results.forEach((v) => data.demandes.push(v));
+      data.demandes.splice(0,data.demandes.length);
       affichageDate();
     })
     .catch((error) => alert(error));
@@ -42,27 +43,38 @@ function affichageDate(){
   }
   }
  
-function deleteFetch(id) {
-    let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    const fetchOptions = {
-        method: "DELETE",
-        headers: myHeaders,
-    };
-    fetch("/api/demandes/" + id, fetchOptions)
-        .then(() => {
-            fetchDemandes();
-        })
-        .catch((error) => alert(error));
-}
-function fetchDemandes() {
-    fetch("/api/demandes/" + data.id)
-        .then((response) => response.json())
-        .then((json) => {
-            data.demandes = json;
-        })
-        .catch((error) => alert(error));
-}
+function FetchFaire(id) {
+  let d = data.demandes[id - 1];
+  let url = "/api/demandes/" + id;
+  let date = new Date(d.date);
+  let myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  const fetchOptions = {
+    method: "PUT",
+    headers: myHeaders,
+    body: JSON.stringify({
+      id: d.id,
+      adressemail: d.adressemail,
+      categorie: d.categorie,
+      date: date.toJSON(),
+      lien: d.lien,
+      nomdemandeur: d.nomdemandeur,
+      objet: d.objet,
+      pb: d.pb,
+      prenomdemandeur: d.prenomdemandeur,
+      profession: d.profession,
+      traite: true
+    }),
+  };
+  console.log(fetchOptions);
+  fetch(url, fetchOptions)
+    .then((response) => {
+      return response.json();
+    })
+    .then((dataJSON) => {
+      console.log(dataJSON);
+      getDemandes();
+    });
 
 
 </script>
@@ -91,7 +103,7 @@ function fetchDemandes() {
         <td>{{ demande.objet }}</td>
         <td class="info">{{ demande.profession }}</td> 
         <td class="voir">
-           <button value=demande.id class="btn-btn-primary" id="voir"  @click="$emit('laDemandeid', $event.target.value)"> Voir</button>
+           <button value=demande.id class="btn-btn-primary" id="voir"  @click="$emit('FetchFaire', $event.target.value)"> Voir</button>
         </td>       
         <td>
         <ConfirmationTraitement @TraitementConfirmed="deleteFetch" :id="demande.id" /> </td>   </tr>

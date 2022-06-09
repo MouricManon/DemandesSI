@@ -2,25 +2,26 @@
 import TableauDemande from "@/components/TableauDemande.vue";
 import { json } from "body-parser";
 import VoirDemande from "@/components/VoirDemande.vue";
-/*
-function handler(id){
-  let fetchOptions={method:"GET"};
-  fetch("api/api/demandes/"+id)
-  .then((response)=> response.json())
-  .then((json)=>{
-    let results=json._embedded.demandes,
-    results.forEach(v)=>data.demandes.push(v),
+import VoirDemande from "src/components/VoirDemande.vue"; 
+ let touteDemande = ref(true)
 
-    console.log(json), 
-  })
-}*/
 </script>
 <template>
-  
-  <div class="espace" @laDemandeid="handler" >
-<TableauDemande>
-</TableauDemande>
 
+
+  <div class="espace" @FetchFaire="handler" >
+
+<div v-if="touteDemande">
+ 
+<div @click="touteDemande =!touteDemande">
+<TableauDemande>
+</TableauDemande></div>
 </div>
+<div v-else> <div @click="touteDemande =!touteDemande">
+  <VoirDemande></VoirDemande></div>
+  </div>
+</div>
+
+
 
 </template>
