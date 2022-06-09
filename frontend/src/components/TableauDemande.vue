@@ -5,13 +5,12 @@ import CreationDemande from "@/components/CreationDemande.vue";
 import ConfirmationTraitement from './ConfirmationTraitement.vue';
 onMounted(() => {
   getDemandes();
- // affichageDate();
+ affichageDate();
 });
 const data = reactive({
     id: "",
     demandes: [],
 demandesSuppr:[],
-
 });
 
 function getDemandes() {
@@ -27,17 +26,20 @@ function getDemandes() {
     console.log(data.demandes);
 }
 
-/*function affichageDate(){
- data.demandes.forEach((d) =>
+function affichageDate(){
+ data.demandes.forEach((d) => 
  datesansmodif = d.getDate(),
- mois = datesansmodif.getMonth(),
- jour = datesansmodif.getDay(),
- annee = datesansmodif.getYear(),
- datemodif = jour+"/"+mois+"/"+annee,
-d.setDate(datemodif),
-console.log(datemodif), 
- )
-}*/
+datelocale= datesansmodif.toLocaleString('fr-FR',{
+  weekday : 'long',
+  year : 'numeric',
+  month : 'long',
+  day : 'numeric',
+  hour:'numeric',
+  minute : 'numeric',
+  seconde : 'numeric'}
+  d.setDate(datelocale)));
+
+}
 function deleteFetch(id) {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -48,7 +50,6 @@ function deleteFetch(id) {
     fetch("/api/demandes/" + id, fetchOptions)
         .then(() => {
             fetchDemandes();
-           //setTraite(true);
         })
         .catch((error) => alert(error));
 }

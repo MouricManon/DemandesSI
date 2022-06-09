@@ -17,7 +17,7 @@ function handler(id){
 </script>
 <template>
   
-  <div class="espace" @laDemandeid="handler">
+  <div class="espace" @laDemandeid="handler" >
 <TableauDemande>
 </TableauDemande>
 
