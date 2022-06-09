@@ -3,7 +3,7 @@ import { onMounted, reactive, onUpdated } from "vue";
 import Demande from "@/Demande.js";
 import CreationDemande from "@/components/CreationDemande.vue";
 onMounted(() => {
- // laDemandeid();
+  // laDemandeid();
 });
 /*
 const data = reactive({ 
@@ -26,13 +26,14 @@ function laDemandeid(id) {
 
 </script>
 <template>
- <div class="container">
-   <table class="table">
-      <thead><tr class="date">Date
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr class="date">Date
         </tr>
         <tr class="urgence">Urgence
         </tr>
-        <tr class="nom">Nom 
+        <tr class="nom">Nom
         </tr>
         <tr class="prenom">Prénom
         </tr>
@@ -49,7 +50,7 @@ function laDemandeid(id) {
         <tr class="traite">Traité?
         </tr>
       </thead>
-      <tbody  class="txt-violet">
+      <tbody class="txt-violet">
       </tbody>
     </table>
   </div>

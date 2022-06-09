@@ -24,7 +24,6 @@ import fr.jfc.demande.entity.Demande;
 import fr.jfc.demande.enume.Categorie;
 import fr.jfc.demande.enume.Profession;
 
-
 @Controller // This means that this class is a Controller
 @RequestMapping(path = "/api") // This means URL's start with /rest (after Application path)
 @Slf4j
@@ -36,40 +35,36 @@ public class RestController {
 	@Autowired
 	private DemandeRepository demandeDao;
 
-	
-/*mettre quels getMapping?
-	@GetMapping(path = "InfirmierSoignerMedicament/{id}")
-	public @ResponseBody List<DemandeDetails> DemandesDetails(@PathVariable int id) {
-		log.info("Détails demande");
-		return demandeDao.DemandeDetails(id);
-	}*/
+	/*
+	 * mettre quels getMapping?
+	 * 
+	 * @GetMapping(path = "InfirmierSoignerMedicament/{id}") public @ResponseBody
+	 * List<DemandeDetails> DemandesDetails(@PathVariable int id) {
+	 * log.info("Détails demande"); return demandeDao.DemandeDetails(id); }
+	 */
 
-	/*private Date datecreation;
-    private String nomdemandeur;
-     String prenomdemandeur;
-     String adressemail;
-     String objet;
-     Categorie categorie;
-     Profession profession;
-     String pb;
-     img piecejointe;*/
+	/*
+	 * private Date datecreation; private String nomdemandeur; String
+	 * prenomdemandeur; String adressemail; String objet; Categorie categorie;
+	 * Profession profession; String pb; img piecejointe;
+	 */
 
 	@PostMapping(path = "saveDemande")
 	public @ResponseBody Demande saveDemande(@RequestBody DemandeForm formData) {
 		log.info("Reçu: {}", formData);
-		Demande d=new Demande();
-d.setNomdemandeur(formData.getNomdemandeur());
-			d.setPrenomdemandeur(formData.getPrenomdemandeur());
-			d.setAdressemail(formData.getAdressemail());
-			d.setObjet(formData.getObjet());
-			d.setCategorie(formData.getCategorie());
-			d.setProfession(formData.getProfession());
-			d.setDate(formData.getDatecreation());
-			d.setLien(formData.getLien());
-			d.setPb(formData.getPb());
-			log.info("Enregistré: {}", formData.getNomdemandeur(), demandeDao);	
-			demandeDao.save(d);
-		
+		Demande d = new Demande();
+		d.setNomdemandeur(formData.getNomdemandeur());
+		d.setPrenomdemandeur(formData.getPrenomdemandeur());
+		d.setAdressemail(formData.getAdressemail());
+		d.setObjet(formData.getObjet());
+		d.setCategorie(formData.getCategorie());
+		d.setProfession(formData.getProfession());
+		d.setDate(formData.getDatecreation());
+		d.setLien(formData.getLien());
+		d.setPb(formData.getPb());
+		log.info("Enregistré: {}", formData.getNomdemandeur(), demandeDao);
+		demandeDao.save(d);
+
 		return d;
 	}
 
@@ -97,36 +92,37 @@ d.setNomdemandeur(formData.getNomdemandeur());
 	@GetMapping(path = "DemandeById")
 	public @ResponseBody Demande DemandeById(int id) {
 		List<Demande> allDemande = this.demandeDao.findAll();
-Demande laDemande = new Demande();
+		Demande laDemande = new Demande();
 		for (Demande d : allDemande) {
-			if(d.getId() == id){
-			laDemande =d;
+			if (d.getId() == id) {
+				laDemande = d;
 			}
 		}
 		log.info(laDemande.toString());
 
 		return laDemande;
 	}
-	
-	  @GetMapping(path = "allAdministrateur")
-	  public @ResponseBody List<Administrateur> allAdmin() {
-	  log.info("Renvoie la liste des administrateurs");
-	 return adminDao.findAll();
-	  }
 
-	  @GetMapping(path = "allCategories")
+	@GetMapping(path = "allAdministrateur")
+	public @ResponseBody List<Administrateur> allAdmin() {
+		log.info("Renvoie la liste des administrateurs");
+		return adminDao.findAll();
+	}
+
+	@GetMapping(path = "allCategories")
 	public @ResponseBody List<Categorie> allCategorie() {
 		log.info("Renvoie la liste des catégories");
-		List<Categorie> lesCategories= new ArrayList<>();
+		List<Categorie> lesCategories = new ArrayList<>();
 		for (Categorie cat : Categorie.values()) {
 			lesCategories.add(cat);
 		}
 		return lesCategories;
 	}
+
 	@GetMapping(path = "allProfessions")
 	public @ResponseBody List<Profession> allProfessions() {
 		log.info("Renvoie la liste des professions");
-		List<Profession> lesProfessions= new ArrayList<>();
+		List<Profession> lesProfessions = new ArrayList<>();
 		for (Profession prof : Profession.values()) {
 			lesProfessions.add(prof);
 		}

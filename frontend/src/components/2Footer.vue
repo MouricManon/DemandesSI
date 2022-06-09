@@ -11,17 +11,17 @@
                 <div id="contact">
                     <!--<p>Five Cure</p>-->
                     <p> <img src="@/assets/clinique.png" alt="logo Synergia" height="60" width="110" />
-                      </p>
+                    </p>
                     <p>Service informatique de la clinique Synergia Ventoux</p>
                     <p>26, rond-point de l'Amitié 84200 Carpentras</p>
-                   
+
                 </div>
 
                 <!-- div sur la partie droite "revenir en haut" -->
                 <div id="haut">
-                  <a href="#top">   <img id="fleche" src="@/assets/fleche.png" alt="Fleche sur laquelle cliquer pour revenir au haut de page"
-                        height="50" width="50" /></a>
-                   <a id="revenir" title="ancre vers le haut de la page">Revenir en haut de page</a> 
+                    <a href="#top"> <img id="fleche" src="@/assets/fleche.png"
+                            alt="Fleche sur laquelle cliquer pour revenir au haut de page" height="50" width="50" /></a>
+                    <a id="revenir" title="ancre vers le haut de la page">Revenir en haut de page</a>
                 </div>
 
 
@@ -71,17 +71,16 @@ a:visited {
     color: black;
 }
 
-#fleche{
-    position : relative;
-    top : 45px;
-    left : 200px;
+#fleche {
+    position: relative;
+    top: 45px;
+    left: 200px;
 }
 
-#revenir{
-    position : relative;
-    top : 45px;
-    left : 210px;
-    color : black;
+#revenir {
+    position: relative;
+    top: 45px;
+    left: 210px;
+    color: black;
 }
-
 </style>

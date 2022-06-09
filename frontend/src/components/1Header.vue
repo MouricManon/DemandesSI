@@ -1,9 +1,12 @@
+<script>
+//<router-view  />
+</script>
 <template>
-  
-    
+
+
   <div class="navbar mb-3">
 
- 
+
     <nav class="container navbar-expand-lg d-flex justify-content-md-between py-3 mb-4 border-bottom">
       <router-link to="/" class="navbar-brand"><span class="max">Accueil</span></router-link>
       <router-link to="/signaler" class="navbar-brand"><span class="max">Demande</span></router-link>
@@ -11,13 +14,12 @@
       <p class="mt-3">Bienvenue</p>
     </nav>
   </div>
-  <router-view/>
+
 </template>
 
 
 
 <style scoped>
-
 .navbar {
   background: -webkit-linear-gradient(to right, #838383, #c7c7c7);
   background: linear-gradient(to right, #c7c7c7, #838383);
