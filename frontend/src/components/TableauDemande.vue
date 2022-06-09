@@ -3,9 +3,9 @@ import { onMounted, reactive, onUpdated } from "vue";
 import Demande from "@/Demande.js";
 import CreationDemande from "@/components/CreationDemande.vue";
 import ConfirmationTraitement from './ConfirmationTraitement.vue';
-onMounted(() => {
+onMounted(() => { 
   getDemandes();
- affichageDate();
+
 });
 const data = reactive({
     id: "",
@@ -21,25 +21,27 @@ function getDemandes() {
     .then((json) => {
       let results = json._embedded.demandes;
       results.forEach((v) => data.demandes.push(v));
+      affichageDate();
     })
     .catch((error) => alert(error));
     console.log(data.demandes);
 }
 
 function affichageDate(){
- data.demandes.forEach((d) => 
- datesansmodif = d.getDate(),
-datelocale= datesansmodif.toLocaleString('fr-FR',{
+  for (let d of data.demandes){
+    let datesansmodif = d.date;
+    let datemodif = new Date(datesansmodif);
+    d.date=datemodif.toLocaleDateString('fr-FR',{
   weekday : 'long',
   year : 'numeric',
   month : 'long',
   day : 'numeric',
   hour:'numeric',
   minute : 'numeric',
-  seconde : 'numeric'}
-  d.setDate(datelocale)));
-
-}
+  seconde : 'numeric'});
+  }
+  }
+ 
 function deleteFetch(id) {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
