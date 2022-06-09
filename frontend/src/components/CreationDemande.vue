@@ -127,44 +127,44 @@ function postDemande(
         )
       " id="form" class="row g-3" action="ftp.php" name="upload" >
        <div class="col-md-6">
-      <legend>À propos de vous</legend>
+        <legend>À propos de vous</legend>
         <label for="nomdemandeur,prenomdemandeur">Indiquez votre nom et prénom :</label>
         <input class="input" type="text" id="nomdemandeurDemande" v-model="nomdemandeur" placeholder="Nom"/>
         <input class="input" type="text" id="prenomdemandeurDemande" v-model="prenomdemandeur"  placeholder="Prénom"/>
         </div> 
-         <div  class="col-md-6">
-          <label for="adressemail">Indiquez votre adresse mail :</label>
-          <input class="input" id="adressemailDemande"   cols="70" maxlength="70" type="text" v-model="adressemail"  placeholder="jean.dupont@exemple.com"/>
+        <div  class="col-md-6">
+        <label for="adressemail">Indiquez votre adresse mail :</label>
+        <input class="input" id="adressemailDemande"   cols="70" maxlength="70" type="text" v-model="adressemail"  placeholder="jean.dupont@exemple.com"/>
         </div>      
         <div  class="col-md-6">
-          <label for="profession">Sélectionnez votre profession :</label>
-           <select class="select" id="selectrech" v-model="profession" > 
-            <option value="placehold" selected disabled>--Votre profession--</option> 
-          <option v-for="(profession,index) of professions">
-            {{ profession}}
-          </option>
+        <label for="profession">Sélectionnez votre profession :</label>
+        <select class="select" id="selectrech" v-model="profession" > 
+        <option value="placehold" selected disabled>--Votre profession--</option> 
+        <option v-for="(profession,index) of professions">
+        {{ profession}}
+        </option>
         </select></div>
-        
-        <div  class="col-md-6">
-          <legend>À propos du message</legend>
-          <label for="objet">Indiquez la nature de votre demande :</label>
-          <input class="input" id="objetDemande"   cols="70" maxlength="70" type="text" v-model="objet"  placeholder="Objet"/>
-        </div>
-         <div  class="col-md-6">
-            <label for="categorie">Indiquez le niveau d'urgence :</label>
-           <select class="select"  v-model="categorie" >
-           <option value="" selected disabled>--Niveau d'urgence--</option> 
-          <option v-for="(categorie,index) of categories">
+      <div  class="col-md-6">
+        <legend>À propos du message</legend>
+        <label for="objet">Indiquez la nature de votre demande :</label>
+        <input class="input" id="objetDemande"   cols="70" maxlength="70" type="text" v-model="objet"  placeholder="Objet"/>
+      </div>
+      <div  class="col-md-6">
+        <label for="categorie">Indiquez le niveau d'urgence :</label>
+        <select class="select"  v-model="categorie" >
+        <option value="" selected disabled>--Niveau d'urgence--</option> 
+        <option v-for="(categorie,index) of categories">
             {{ categorie}}
-          </option>
-        </select></div>
-        <div  class="col-md-6">
-          <label for="pb">Décrivez votre problème :</label>
+        </option>
+        </select>
+      </div>
+      <div  class="col-md-6">
+        <label for="pb">Décrivez votre problème :</label>
         <textarea  rows="10" cols="100" maxlength="1000" class="input"  id="pbDemande"  placeholder="Nous sommes à votre écoute" v-model="pb"/>
-        </div>
-        <div  class="col-md-6">
-          <label for="fichier">Ajoutez une image si besoin :</label>
-           <input  type="file" name="fichier"/>
+      </div>
+      <div  class="col-md-6">
+      <label for="fichier">Ajoutez une image si besoin :</label>
+      <input  type="file" name="fichier"/>
         
         </div>
         <div class="col-md-6">

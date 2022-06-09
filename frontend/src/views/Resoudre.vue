@@ -11,17 +11,16 @@ function handler(id){
     let results=json._embedded.demandes,
     results.forEach(v)=>data.demandes.push(v),
 
-    console.log(json),
+    console.log(json), 
   })
 }*/
 </script>
 <template>
   
-  <div class="espace">
-<TableauDemande @laDemandeid="handler">
+  <div class="espace" @laDemandeid="handler">
+<TableauDemande>
 </TableauDemande>
-<VoirDemande>
-</VoirDemande>
+
 </div>
 
 </template>

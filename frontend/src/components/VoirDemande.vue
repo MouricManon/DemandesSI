@@ -3,7 +3,7 @@ import { onMounted, reactive, onUpdated } from "vue";
 import Demande from "@/Demande.js";
 import CreationDemande from "@/components/CreationDemande.vue";
 onMounted(() => {
-  laDemandeid();
+ // laDemandeid();
 });
 /*
 const data = reactive({ 
