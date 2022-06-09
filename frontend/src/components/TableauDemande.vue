@@ -106,11 +106,10 @@ function FetchFaire(id) {
           <td>{{ demande.objet }}</td>
           <td class="info">{{ demande.profession }}</td>
           <td class="voir">
-            <button value="demande.id" class="btn-btn-primary" id="voir"
-              @click="$emit('laDemandeid', $event.target.value)"> Voir</button>
+            <button value="demande.id" class="btn-btn-primary" id="voir" @click="$emit('laDemandeid', $event.target.value)"> Voir</button>
           </td>
           <td>
-            <ConfirmationTraitement @TraitementConfirmed="deleteFetch" :id="demande.id" />
+            <ConfirmationTraitement @TraitementConfirmed="FetchFaire" :id="demande.id" />
           </td>
         </tr>
         <tr v-else>

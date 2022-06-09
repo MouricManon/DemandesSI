@@ -5,7 +5,7 @@ import CreationDemande from "@/components/CreationDemande.vue";
 onMounted(() => {
   // laDemandeid();
 });
-/*
+
 const data = reactive({ 
 });
 
@@ -22,7 +22,6 @@ function laDemandeid(id) {
     .catch((error) => { }); console.log(response);
 }
 
-*/
 
 </script>
 <template>
