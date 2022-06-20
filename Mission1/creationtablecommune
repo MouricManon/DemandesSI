@@ -1,0 +1,71 @@
+<?php
+
+/*
+ * Document   : creation_table_commune.php
+ * Created on : 20/05/2022
+ * Author     : MM
+ * Description: Fichier permettant de créer une table de séjour globale et de la remplir
+ */
+require_once('_inc/init.php');
+
+echo "Création d'une table de mouvement commune \n";
+echo "Connexion à la bdd avec la méthode de GO \n";
+$bdd = new oDB();
+
+$creationsql = "DROP TABLE IF EXISTS `MOUV_GLOBAL`;
+CREATE TABLE `MOUV_GLOBAL` (
+`id` int PRIMARY KEY NOT NULL AUTO_INCREMENT ,
+`prov` varchar(2) DEFAULT NULL,
+`nda` int NOT NULL,
+`ipp` int NOT NULL,
+`id_mouv` int NOT NULL UNIQUE,
+`nature_mouv` varchar(5) NOT NULL,
+`date_debut` date NOT NULL,
+`medecin_respons` varchar(255)DEFAULT NULL,
+`code_ufm` varchar(16) DEFAULT NULL,
+`code_ufh` varchar(16) DEFAULT NULL,
+`code_lit` varchar(10) DEFAULT NULL,
+`mode_entree_prov` varchar(2)DEFAULT NULL,
+`mode_entree_perso` varchar(16) DEFAULT NULL,
+`mode_sortie` varchar(2) DEFAULT NULL,
+`mode_sortie_perso` varchar(16) DEFAULT NULL,
+`type_sortie` varchar(1)DEFAULT NULL,
+`etab_provenance` varchar(12) DEFAULT NULL,
+`etab_destination` varchar(12) DEFAULT NULL,
+`date_fin` date DEFAULT NULL,
+`commentaire` varchar(255)DEFAULT NULL,
+`indic_dern_seance` int DEFAULT NULL,
+`indic_sortie_essai` tinyint(1) DEFAULT NULL,
+`indic_isolement` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;";
+
+//fonctionne sur mysql
+
+echo 'La création de la table : ';
+$bdd->execUnique($creationsql);
+echo "Done\n";
+
+echo "Remplissage de la bdd";
+
+echo 'Côté MOUV_LUB : ';
+$creationsql = 'INSERT INTO MOUV_GLOBAL(prov,nda,ipp,id_mouv,nature_mouv,date_debut,medecin_respons,code_ufm,code_ufh,code_lit,mode_entree_prov,mode_entree_perso,'
+        . 'mode_sortie,mode_sortie_perso,type_sortie,etab_provenance,etab_destination,'
+        . 'date_fin,commentaire,indic_dern_seance,indic_sortie_essai,indic_isolement)'
+        . 'SELECT "SL", nda,ipp,id_mouv,nature_mouv,date_debut,medecin_respons,code_ufm,code_ufh,code_lit,'
+        . 'mode_entree_prov,mode_entree_perso, mode_sortie,mode_sortie_perso,type_sortie,etab_provenance,etab_destination,date_fin,commentaire,'
+        . 'indic_dern_seance,indic_sortie_essai,indic_isolement FROM MOUV_LUB';
+//fonctionne sur mysql
+$bdd->execUnique($creationsql);
+echo "Done\n";
+
+echo 'Côté MOUV_VENTOUX : ';
+$creationsql = 'INSERT INTO MOUV_GLOBAL(prov,nda,ipp,id_mouv,nature_mouv,date_debut,medecin_respons,code_ufm,code_ufh,code_lit,mode_entree_prov,mode_entree_perso,'
+        . 'mode_sortie,mode_sortie_perso,type_sortie,etab_provenance,etab_destination,'
+        . 'date_fin,commentaire,indic_dern_seance,indic_sortie_essai,indic_isolement)'
+        . 'SELECT "SV", nda,ipp,id_mouv,nature_mouv,date_debut,medecin_respons,code_ufm,code_ufh,code_lit,'
+        . 'mode_entree_prov,mode_entree_perso, mode_sortie,mode_sortie_perso,type_sortie,etab_provenance,etab_destination,date_fin,commentaire,'
+        . 'indic_dern_seance,indic_sortie_essai,indic_isolement FROM MOUV_VENTOUX';
+//pas de différence de texte donc à priori fonctionne sur mysql :)
+$bdd->execUnique($creationsql);
+echo "DONE\n";
+?>

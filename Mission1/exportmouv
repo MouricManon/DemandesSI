@@ -1,0 +1,131 @@
+<?php
+
+/*
+ * Document   : export_mouv.php
+ * Created on : 23/05/2022
+ * Author     : MM/GO
+ * Description: Fichier qui remplit un fichier csv
+ */
+
+require_once('_inc/init.php');
+
+echo " Export de la table mouv_SWM";
+
+$bdd = new oDB();
+echo 'on récupère toutes les lignes que nous voulons exporter';
+
+$sql = 'SELECT * FROM MOUV_SWM order by id ASC';
+$bdd->exec($sql);
+echo 'DONE\n';
+
+//récupération du code des sejours
+$chemin = '/datasyn/conversyn/export/mouv_swm' . time() . '.csv';
+echo $chemin . "\n";
+$fh = fopen($chemin, 'w');
+if (!$fh) {
+    die("Erreur lors de l'ouverture du fichier : " . $chemin);
+}
+
+
+$total = $bdd->getNbRecord();
+echo 'Création  de ' . $total . "lignes";
+$i = 0;
+$data = array();
+
+
+$unData[] = "type_ligne";
+$unData[] = "prov";
+$unData[] = "nda";
+$unData[] = "ipp";
+$unData[] = "id_mouv";
+$unData[] = "nature_mouv";
+$unData[] = "date_debut";
+$unData[] = "medecin_respons";
+$unData[] = "code_ufm";
+$unData[] = "code_ufh";
+$unData[] = "code_lit";
+$unData[] = "mode_entree_prov";
+$unData[] = "mode_entree_perso";
+$unData[] = "mode_sortie";
+$unData[] = "mode_sortie_perso";
+$unData[] = "type_sortie";
+$unData[] = "etab_provenance";
+$unData[] = "etab_destination";
+$unData[] = "date_fin";
+$unData[] = "commentaire";
+$unData[] = "indic_dern_seance";
+$unData[] = "indic_sortie_essai";
+$unData[] = "indic_isolement";
+
+
+
+fputcsv($fh, $unData, ";", '"');    // Pour afficher l'entete
+
+unset($unData);
+
+while ($champ = $bdd->getObjet()) {
+    $i++;
+    echo "TRAITEMENT : " . $i . " / " . $total . "\n";
+
+
+    /* // Traitement date de entree
+      $tabDate = explode(' ', $res->date_debut);
+      if(sizeof($tabDate) == 2) {
+      $tabDate1 = explode('-', $tabDate[0]);
+      $tabDate2 = explode(':', $tabDate[1]);
+      $dateEnt = sprintf("%02d%02d%04d%02d%02d", $tabDate1[2], $tabDate1[1], $tabDate1[0], $tabDate2[0], $tabDate2[1]);
+      } else {
+      $dateEnt = "";
+      }
+
+      // Traitement date de sortie
+      $tabDateS = explode(' ', $res->date_sortie);
+      if(sizeof($tabDateS) == 2) {
+      $tabDate1S = explode('-', $tabDate[0]);
+      $tabDate2S = explode(':', $tabDate[1]);
+      $dateSor = sprintf("%02d%02d%04d%02d%02d", $tabDate1S[2], $tabDate1S[1], $tabDate1S[0], $tabDate2S[0], $tabDate2S[1]);
+
+      } else {
+      $dateSor = "";
+      } */
+    // pas compris à quoi sert le début
+
+    $unData[] = $champ->type_ligne;
+    $unData[] = $champ->prov;
+    $unData[] = $champ->nda;
+    $unData[] = $champ->ipp;
+    $unData[] = $champ->id_mouv;
+    $unData[] = $champ->nature_mouv;
+    $unData[] = $champ->date_debut; 
+    $unData[] = $champ->medecin_respons;
+    $unData[] = $champ->code_ufm;
+    $unData[] = $champ->code_ufh;
+    $unData[] = $champ->code_lit ;
+    $unData[] = $champ->mode_entree_prov;
+    $unData[] = $champ->mode_entree_perso;
+    $unData[] = $champ->mode_sortie;
+    $unData[] = $champ->mode_sortie_perso;
+    $unData[] = $champ->type_sortie;
+    $unData[] = $champ->etab_provenance;
+    $unData[] = $champ->etab_destination;
+    $unData[] = $champ->date_fin;
+    $unData[] = $champ->commentaire;
+    $unData[] = $champ->indic_dern_seance;
+    $unData[] = $champ->indic_sortie_essai;
+    $unData[] = $champ->indic_isolement;
+   
+
+
+
+
+
+    fputcsv($fh, $unData, ";", '"');
+    //$data[] = $unData;
+    unset($unData);
+}
+
+
+fclose($fh);
+echo 'DONE' . "\n";
+?>
+

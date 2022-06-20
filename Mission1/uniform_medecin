@@ -1,0 +1,66 @@
+<?php
+
+/* 
+ * Document   : uniform_medecin.php
+ * Created on : 23/05/2022
+ * Author     : MM/AA
+ * Description: Fichier qui remplit les medecins en format SWM
+ */
+require_once('_inc/init.php');
+
+$bdd = new oDB();
+$bddAjour = new oDB();
+
+
+echo "Modification des infos du médecin pour avoir les sous-champs (type, ADELI,code interne, nom, prénom,RPPS";
+echo "pour LUB";
+$sql = 'SELECT * FROM MOUV_LUB AS MVL RIGHT JOIN PROF_SANTE AS PS ON PS.CODE_LUB = MVL.MEDECIN_RESPONS ;';
+$bdd->exec($sql);
+$total = $bdd->getNbRecord();
+$i=0;
+
+while($champ = $bdd->getObjet()) {
+    
+    $i++;
+    
+    echo "Traitement de la ligne : ".$i." / ".$total;
+    
+     $prac = '1~'.$champ->FINESS.'~'.$champ->Code_SWM.'~'.$champ->Nom.'~'.$champ->Prenom.'~'.$champ->RPPS;
+     $sqlAjour  = "UPDATE MOUV_LUB SET medecin_respons = '$prac'"; 
+     $sqlAjour .= "WHERE id_mouv = '$champ->idMOUV_LUB'";
+    
+    
+    $bddAjour->exec($sqlAjour);
+    echo "\n";
+    
+}
+echo "DONE\n";
+ 
+
+
+// Modification des infos du médecin pour avoir les sous-champs (type, ADELI,code interne, nom, prénom,RPPS
+//pour VENT
+$sql = 'SELECT * FROM MOUV_VENTOUX AS MVV RIGHT JOIN PROF_SANTE AS PS ON PS.CODE_VENT = MVV.MEDECIN_RESPONS ;';
+$bdd->exec($sql);
+$total = $bdd->getNbRecord();
+$i=0;
+
+while($champ = $bdd->getObjet()) {
+    
+    $i++;
+    
+    echo "Traitement de la ligne : ".$i." / ".$total;
+    
+     $prac = '1~'.$champ->FINESS.'~'.$champ->Code_SWM.'~'.$champ->Nom.'~'.$champ->Prenom.'~'.$champ->RPPS;
+     $sqlAjour  = "UPDATE MOUV_VENTOUX SET medecin_respons = '$prac'"; 
+     $sqlAjour .= "WHERE id_mouv = '$champ->idMOUV_VENT'";
+    
+    
+    $bddAjour->exec($sqlAjour);
+    echo "\n";
+    
+}
+echo "DONE\n";
+ 
+//il faudrait un fichier qui copie cette table dans une SWM + crée type lignz et pouvoir  après faire l'export
+?>
