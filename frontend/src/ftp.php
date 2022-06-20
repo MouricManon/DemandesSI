@@ -1,6 +1,6 @@
 <?php
 //il faut réussir à récupérer la téléversation du coup pas le mettre en route mtn
-/*
+
 define('CONFIG_SERVER',   '192.1.2.81');  // Adresse du serveur FTP
 define('CONFIG_USERNAME', 'mmouric');  // Nom d'utilisateur
 define('CONFIG_PASSWORD', 'Szu97xmm!');  // Mot de passe
@@ -37,9 +37,9 @@ if(! empty($_FILES['fichier']) && $_FILES['fichier']['error'] == UPLOAD_ERR_OK &
       if(ftp_put($conn_id, $dest, $file, FTP_BINARY))
         echo 'Le fichier a été envoyé avec succès';
       else
-        echo 'Problème lors de l'envoi du fichier';
+        echo 'Problème lors de l\'envoi du fichier';
     }
-    // Fermeture de la connexion
+    //Fermeture de la connexion
     ftp_close($conn_id);
   }
-}*/
+}
